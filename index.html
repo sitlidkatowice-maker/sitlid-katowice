@@ -1,0 +1,2963 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Oficjalna strona Stowarzyszenia Inżynierów i Techników Leśnictwa i Drzewnictwa (SITLiD) — Oddział Katowice. Zrzeszamy profesjonalistów, naukowców i pasjonatów leśnictwa oraz przemysłu drzewnego na Śląsku od 1951 roku.">
+  <meta name="keywords" content="SITLiD, SITLiD Katowice, Stowarzyszenie Inżynierów i Techników Leśnictwa i Drzewnictwa, leśnictwo Śląsk, przemysł drzewny, inżynier leśnictwa, technika drzewna, Las, Katowice">
+  <meta name="author" content="SITLiD Katowice">
+  
+  <title>SITLiD Katowice — Stowarzyszenie Inżynierów i Techników Leśnictwa i Drzewnictwa</title>
+  
+  <!-- Favicon - Custom Inline SVG for Instant Loading & High Resolution -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2314331C'/%3E%3Cpath d='M50 20 C65 40, 75 55, 50 85 C25 55, 35 40, 50 20 Z' fill='%237D5135'/%3E%3Cpath d='M50 25 C60 42, 68 55, 50 80 C32 55, 40 42, 50 25 Z' fill='%23FAF6F0'/%3E%3Ccircle cx='50' cy='52' r='8' fill='%2314331C'/%3E%3Cpath d='M47 52 L53 52 M50 49 L50 55' stroke='%237D5135' stroke-width='2'/%3E%3C/svg%3E">
+
+  <!-- Google Fonts: Lora (Classic Serif) & Plus Jakarta Sans (Modern Geometric Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================
+       DESIGN SYSTEM & CSS VARIABLES
+       ========================================== */
+    :root {
+      /* Colors — Light Mode (Default) */
+      --color-bg: #F9F6F0;             /* Off-white parchment background */
+      --color-surface: #FFFFFF;        /* Pure white cards/containers */
+      --color-surface-hover: #F3ECE2;  /* Slightly darker parchment/wood hover */
+      --color-text-main: #1C1E1B;      /* Silesian coal/dark charcoal */
+      --color-text-muted: #555E57;     /* Soft slate grey-green */
+      --color-primary: #14331C;        /* Rich forest green */
+      --color-primary-hover: #1E4B2A;  /* Vibrant forest green */
+      --color-accent: #7D5135;         /* Deep timber brown */
+      --color-accent-hover: #966442;   /* Warm lighter timber brown */
+      --color-border: #E5DDD3;         /* Subtle earthy divider */
+      --color-border-focus: #7D5135;   /* Accent focus */
+      --color-shadow: rgba(20, 51, 28, 0.05);
+      --color-shadow-hover: rgba(20, 51, 28, 0.12);
+      --color-hero-bg: #14331C;
+      --color-hero-text: #F9F6F0;
+      
+      /* Typography & Sizing */
+      --font-headings: 'Lora', serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --container-max-width: 1240px;
+      --transition-smooth: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    /* Dark Mode Theme Variables (Forced light/dark or system-based fallback) */
+    body.dark-theme {
+      --color-bg: #0F1310;             /* Dark coal-forest shade */
+      --color-surface: #171D19;        /* Deep pine-needle green-black */
+      --color-surface-hover: #222B24;  /* Muted dark pine hover */
+      --color-text-main: #F3ECE2;      /* Warm parchment text */
+      --color-text-muted: #9BA89F;     /* Muted sage-grey */
+      --color-primary: #458B5C;        /* Lighter forest green for high contrast */
+      --color-primary-hover: #58A270;
+      --color-accent: #B27B52;         /* Vibrant warm amber-wood */
+      --color-accent-hover: #C68E65;
+      --color-border: #29312B;         /* Forest-shadow dark divider */
+      --color-border-focus: #B27B52;
+      --color-shadow: rgba(0, 0, 0, 0.3);
+      --color-shadow-hover: rgba(0, 0, 0, 0.5);
+      --color-hero-bg: #0A0D0B;
+      --color-hero-text: #F3ECE2;
+    }
+
+    /* Supporting Auto System Preferences without breaking explicit toggle */
+    @media (prefers-color-scheme: dark) {
+      :root:not(.light-theme-forced) body:not(.theme-toggle-active) {
+        --color-bg: #0F1310;
+        --color-surface: #171D19;
+        --color-surface-hover: #222B24;
+        --color-text-main: #F3ECE2;
+        --color-text-muted: #9BA89F;
+        --color-primary: #458B5C;
+        --color-primary-hover: #58A270;
+        --color-accent: #B27B52;
+        --color-accent-hover: #C68E65;
+        --color-border: #29312B;
+        --color-border-focus: #B27B52;
+        --color-shadow: rgba(0, 0, 0, 0.3);
+        --color-shadow-hover: rgba(0, 0, 0, 0.5);
+        --color-hero-bg: #0A0D0B;
+        --color-hero-text: #F3ECE2;
+      }
+    }
+
+    /* ==========================================
+       RESET & BASE STYLES
+       ========================================== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      background-color: var(--color-bg);
+      color: var(--color-text-main);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-headings);
+      color: var(--color-text-main);
+      font-weight: 600;
+      line-height: 1.25;
+    }
+
+    a {
+      color: var(--color-accent);
+      text-decoration: none;
+      transition: var(--transition-smooth);
+    }
+
+    a:hover {
+      color: var(--color-accent-hover);
+    }
+
+    button {
+      font-family: var(--font-body);
+      cursor: pointer;
+      border: none;
+      background: none;
+      outline: none;
+    }
+
+    img, svg {
+      max-width: 100%;
+      height: auto;
+      vertical-align: middle;
+    }
+
+    /* Focus styling for keyboard accessibility */
+    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+      outline: 2px solid var(--color-border-focus);
+      outline-offset: 4px;
+    }
+
+    /* Custom elegant scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--color-bg);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--color-border);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--color-accent);
+    }
+
+    /* ==========================================
+       LAYOUT CONTAINER & REUSABLE CLASSES
+       ========================================== */
+    .container {
+      width: 100%;
+      max-width: var(--container-max-width);
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border-radius: 4px;
+      transition: var(--transition-smooth);
+      letter-spacing: 0.2px;
+    }
+
+    .btn-primary {
+      background-color: var(--color-primary);
+      color: #FFFFFF !important;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--color-primary-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      border: 2px solid var(--color-primary);
+      color: var(--color-primary);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--color-primary);
+      color: #FFFFFF !important;
+      transform: translateY(-2px);
+    }
+
+    .btn-accent-outline {
+      border: 2px solid var(--color-accent);
+      color: var(--color-accent);
+    }
+
+    .btn-accent-outline:hover {
+      background-color: var(--color-accent);
+      color: #FFFFFF !important;
+      transform: translateY(-2px);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-radius: 20px;
+      background-color: var(--color-surface-hover);
+      color: var(--color-accent);
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      margin-bottom: 1rem;
+      position: relative;
+      padding-bottom: 0.75rem;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background-color: var(--color-accent);
+    }
+
+    .section-title-center {
+      text-align: center;
+    }
+
+    .section-title-center::after {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .section-subtitle {
+      color: var(--color-text-muted);
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      max-width: 650px;
+      margin: -0.5rem auto 3rem auto;
+      text-align: center;
+    }
+
+    /* ==========================================
+       HEADER & NAVIGATION
+       ========================================== */
+    header {
+      background-color: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      background-color: rgba(255, 255, 255, 0.85);
+      transition: var(--transition-smooth);
+    }
+
+    body.dark-theme header {
+      background-color: rgba(23, 29, 25, 0.85);
+    }
+
+    /* Overwrite system default for header transparency when needed */
+    @media (prefers-color-scheme: dark) {
+      :root:not(.light-theme-forced) header:not(.theme-toggle-active) {
+        background-color: rgba(23, 29, 25, 0.85);
+      }
+    }
+
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 90px;
+    }
+
+    .logo-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--color-text-main);
+    }
+
+    .logo-icon {
+      width: 48px;
+      height: 48px;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-title {
+      font-family: var(--font-headings);
+      font-size: 1.4rem;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.3px;
+    }
+
+    .logo-subtitle {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--color-text-muted);
+      font-weight: 600;
+      max-width: 250px;
+    }
+
+    .nav-nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-list {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      gap: 1.75rem;
+    }
+
+    .nav-link {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--color-text-main);
+      padding: 0.5rem 0;
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--color-accent);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease-out;
+    }
+
+    .nav-link:hover {
+      color: var(--color-accent);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .nav-link.active {
+      color: var(--color-accent);
+    }
+
+    .action-controls {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    /* Sun/Moon Theme Toggle Switch */
+    .theme-toggle {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background-color: var(--color-surface-hover);
+      color: var(--color-text-main);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-smooth);
+    }
+
+    .theme-toggle:hover {
+      background-color: var(--color-border);
+      color: var(--color-accent);
+    }
+
+    .theme-toggle svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Toggle icons swapping */
+    .theme-toggle .icon-sun { display: block; }
+    .theme-toggle .icon-moon { display: none; }
+
+    body.dark-theme .theme-toggle .icon-sun { display: none; }
+    body.dark-theme .theme-toggle .icon-moon { display: block; }
+
+    /* Support standard prefers-color-scheme toggle layout sync */
+    @media (prefers-color-scheme: dark) {
+      :root:not(.light-theme-forced) body:not(.theme-toggle-active) .theme-toggle .icon-sun { display: none; }
+      :root:not(.light-theme-forced) body:not(.theme-toggle-active) .theme-toggle .icon-moon { display: block; }
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background-color: var(--color-surface-hover);
+      color: var(--color-text-main);
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ==========================================
+       MAIN APP SECTIONS (SPA TRANSITION)
+       ========================================== */
+    main {
+      flex: 1;
+    }
+
+    .app-section {
+      display: none;
+      opacity: 0;
+      padding-top: 4rem;
+      padding-bottom: 5rem;
+    }
+
+    /* Dynamic fade-in on router hash activation */
+    .app-section.active {
+      display: block;
+      animation: fadeInPage 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes fadeInPage {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ==========================================
+       HOME SECTION
+       ========================================== */
+    .section-home {
+      padding-top: 0 !important;
+    }
+
+    /* Bespoke CSS & SVG Interactive Forest Blueprint Hero */
+    .hero {
+      background-color: var(--color-hero-bg);
+      color: var(--color-hero-text);
+      position: relative;
+      overflow: hidden;
+      padding: clamp(4rem, 10vw, 7.5rem) 0;
+      transition: var(--transition-smooth);
+    }
+
+    /* The visual engine: beautiful vector blueprint pattern inside hero background */
+    .hero-visual-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.18;
+      pointer-events: none;
+      z-index: 1;
+      mix-blend-mode: overlay;
+    }
+
+    .hero-container {
+      position: relative;
+      z-index: 2;
+      max-width: 850px;
+    }
+
+    .hero-badge {
+      background-color: rgba(255, 255, 255, 0.08);
+      color: var(--color-accent);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 1.5px;
+      padding: 0.4rem 1rem;
+      border-radius: 30px;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+    }
+
+    body.dark-theme .hero-badge {
+      background-color: rgba(178, 123, 82, 0.1);
+      border: 1px solid rgba(178, 123, 82, 0.25);
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+      color: #FFFFFF;
+    }
+
+    .hero-description {
+      font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+      line-height: 1.65;
+      margin-bottom: 2.5rem;
+      opacity: 0.9;
+      font-weight: 300;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .hero-btn-accent {
+      background-color: var(--color-accent);
+      color: #FFFFFF !important;
+    }
+
+    .hero-btn-accent:hover {
+      background-color: var(--color-accent-hover);
+      transform: translateY(-2px);
+    }
+
+    .hero-btn-white {
+      border: 2px solid #FFFFFF;
+      color: #FFFFFF !important;
+    }
+
+    .hero-btn-white:hover {
+      background-color: #FFFFFF;
+      color: var(--color-primary) !important;
+      transform: translateY(-2px);
+    }
+
+    /* About cards - Home Page values */
+    .home-about-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 5rem;
+      margin-bottom: 5rem;
+    }
+
+    .about-card {
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      padding: 2.5rem 2rem;
+      transition: var(--transition-smooth);
+      position: relative;
+    }
+
+    .about-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background-color: var(--color-primary);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .about-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px var(--color-shadow-hover);
+      border-color: var(--color-accent);
+    }
+
+    .about-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .about-icon {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 1.5rem;
+      color: var(--color-accent);
+    }
+
+    .about-card-title {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .about-card-desc {
+      color: var(--color-text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Silesian Coal Accent Vibe Section */
+    .coal-accent-section {
+      background-color: var(--color-surface);
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+      padding: 4.5rem 0;
+      margin-bottom: 5rem;
+    }
+
+    .coal-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .coal-text {
+      font-size: 1.05rem;
+    }
+
+    .coal-quote {
+      font-family: var(--font-headings);
+      font-size: 1.8rem;
+      line-height: 1.35;
+      border-left: 4px solid var(--color-accent);
+      padding-left: 1.5rem;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .coal-author {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--color-text-muted);
+      margin-top: 0.5rem;
+    }
+
+    .coal-features-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .coal-feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    .coal-feature-icon {
+      width: 20px;
+      height: 20px;
+      color: var(--color-primary);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .coal-feature-title {
+      font-weight: 600;
+      margin-bottom: 0.15rem;
+    }
+
+    .coal-feature-desc {
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Recent News Block — Home */
+    .home-recent-news {
+      margin-bottom: 2rem;
+    }
+
+    .news-heading-block {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 3rem;
+    }
+
+    .news-heading-block h2 {
+      margin-bottom: 0;
+    }
+
+    /* ==========================================
+       NEWS LIST & CARD COMPONENTS
+       ========================================== */
+    .news-filter-bar {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      padding: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    @media (min-width: 768px) {
+      .news-filter-bar {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    .search-wrapper {
+      position: relative;
+      flex: 1;
+      max-width: 450px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 0.75rem 1rem 0.75rem 2.5rem;
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      background-color: var(--color-bg);
+      color: var(--color-text-main);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      transition: var(--transition-smooth);
+    }
+
+    .search-input:focus {
+      border-color: var(--color-border-focus);
+      background-color: var(--color-surface);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      color: var(--color-text-muted);
+      pointer-events: none;
+    }
+
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .filter-pill {
+      background-color: var(--color-bg);
+      color: var(--color-text-muted);
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.5rem 1.25rem;
+      border-radius: 30px;
+      transition: var(--transition-smooth);
+      border: 1px solid var(--color-border);
+    }
+
+    .filter-pill:hover {
+      color: var(--color-accent);
+      border-color: var(--color-accent);
+    }
+
+    .filter-pill.active {
+      background-color: var(--color-accent);
+      color: #FFFFFF !important;
+      border-color: var(--color-accent);
+    }
+
+    /* News Grid Layout */
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 2rem;
+    }
+
+    .news-card {
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      transition: var(--transition-smooth);
+    }
+
+    .news-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 15px 35px var(--color-shadow-hover);
+      border-color: var(--color-accent);
+    }
+
+    .news-card-media {
+      height: 140px;
+      background-color: var(--color-primary);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+    }
+
+    /* Abstract elegant tree silhouette background pattern on the cards */
+    .news-card-bg-pattern {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      opacity: 0.12;
+      pointer-events: none;
+    }
+
+    .news-card-category {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      z-index: 2;
+      background-color: var(--color-surface);
+      color: var(--color-accent);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+    }
+
+    body.dark-theme .news-card-category {
+      background-color: var(--color-hero-bg);
+    }
+
+    .news-card-body {
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .news-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+      margin-bottom: 0.75rem;
+      font-weight: 500;
+    }
+
+    .news-card-meta svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .news-card-title {
+      font-size: 1.25rem;
+      line-height: 1.35;
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+    }
+
+    .news-card-title a {
+      color: var(--color-text-main);
+    }
+
+    .news-card-title a:hover {
+      color: var(--color-accent);
+    }
+
+    .news-card-excerpt {
+      color: var(--color-text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      flex: 1;
+    }
+
+    .news-card-footer {
+      border-top: 1px solid var(--color-border);
+      padding-top: 1rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .news-read-more {
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .news-read-more:hover svg {
+      transform: translateX(3px);
+    }
+
+    .news-read-more svg {
+      width: 14px;
+      height: 14px;
+      transition: transform 0.2s ease-out;
+    }
+
+    .news-empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 4rem 2rem;
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      color: var(--color-text-muted);
+    }
+
+    /* ==========================================
+       DEDICATED IMMERSIVE NEWS DETAIL ROUTE VIEW
+       ========================================== */
+    .news-detail-wrapper {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .news-detail-back-btn {
+      margin-bottom: 2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--color-accent);
+    }
+
+    .news-detail-back-btn:hover {
+      color: var(--color-accent-hover);
+    }
+
+    .news-detail-back-btn svg {
+      width: 16px;
+      height: 16px;
+      transition: transform 0.2s ease-out;
+    }
+
+    .news-detail-back-btn:hover svg {
+      transform: translateX(-4px);
+    }
+
+    .news-detail-article {
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      padding: clamp(2rem, 5vw, 3.5rem);
+    }
+
+    .news-detail-header {
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 2rem;
+    }
+
+    .news-detail-category-wrapper {
+      margin-bottom: 1rem;
+    }
+
+    .news-detail-title {
+      font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .news-detail-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.5rem;
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .news-detail-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .news-detail-meta-item svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .news-detail-body {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--color-text-main);
+    }
+
+    .news-detail-body p {
+      margin-bottom: 1.5rem;
+    }
+
+    .news-detail-body h3 {
+      font-size: 1.5rem;
+      margin: 2.5rem 0 1rem 0;
+    }
+
+    .news-detail-body ul {
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+    }
+
+    .news-detail-body li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* ==========================================
+       STATUTE SECTION WITH TABLE OF CONTENTS
+       ========================================== */
+    .statute-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    @media (min-width: 992px) {
+      .statute-layout {
+        grid-template-columns: 280px 1fr;
+      }
+    }
+
+    .statute-sidebar {
+      display: none;
+    }
+
+    @media (min-width: 992px) {
+      .statute-sidebar {
+        display: block;
+        position: sticky;
+        top: 120px;
+        max-height: calc(100vh - 150px);
+        overflow-y: auto;
+        padding-right: 1rem;
+        border-right: 1px solid var(--color-border);
+      }
+    }
+
+    .toc-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--color-text-muted);
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+    }
+
+    .toc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .toc-link {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--color-text-muted);
+      padding: 0.5rem 0.75rem;
+      border-radius: 4px;
+      transition: var(--transition-smooth);
+      border-left: 2px solid transparent;
+    }
+
+    .toc-link:hover {
+      color: var(--color-accent);
+      background-color: var(--color-surface-hover);
+    }
+
+    .toc-link.active {
+      color: var(--color-primary);
+      background-color: var(--color-surface-hover);
+      border-left-color: var(--color-primary);
+    }
+
+    .statute-doc {
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      padding: clamp(2rem, 5vw, 4rem);
+    }
+
+    .statute-header {
+      text-align: center;
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 2.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .statute-doc-title {
+      font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 1rem;
+    }
+
+    .statute-doc-subtitle {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .statute-download {
+      margin-top: 1.5rem;
+    }
+
+    .statute-chapter {
+      margin-bottom: 3.5rem;
+      scroll-margin-top: 110px; /* Offset for sticky header */
+    }
+
+    .statute-chapter h3 {
+      font-size: 1.4rem;
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--color-primary);
+    }
+
+    .statute-item {
+      margin-bottom: 1.5rem;
+    }
+
+    .statute-item h4 {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--color-text-main);
+    }
+
+    .statute-item p {
+      font-size: 0.95rem;
+      color: var(--color-text-muted);
+      margin-bottom: 0.5rem;
+      line-height: 1.65;
+    }
+
+    .statute-list {
+      list-style: none;
+      padding-left: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .statute-list-item {
+      position: relative;
+      font-size: 0.95rem;
+      color: var(--color-text-muted);
+    }
+
+    .statute-list-item::before {
+      content: '—';
+      position: absolute;
+      left: -1.25rem;
+      color: var(--color-accent);
+    }
+
+    /* ==========================================
+       BOARD CONTACT SECTION
+       ========================================== */
+    .board-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .board-card {
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      padding: 2.25rem 1.75rem;
+      text-align: center;
+      transition: var(--transition-smooth);
+    }
+
+    .board-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px var(--color-shadow-hover);
+      border-color: var(--color-accent);
+    }
+
+    .board-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background-color: var(--color-primary);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-headings);
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0 auto 1.5rem auto;
+      border: 3px solid var(--color-border);
+      transition: var(--transition-smooth);
+    }
+
+    .board-card:hover .board-avatar {
+      background-color: var(--color-accent);
+      border-color: var(--color-accent-hover);
+    }
+
+    .board-role {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--color-accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .board-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .board-desc {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .board-actions {
+      border-top: 1px solid var(--color-border);
+      padding-top: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .board-action-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-text-main);
+    }
+
+    .board-action-link:hover {
+      color: var(--color-accent);
+    }
+
+    .board-action-link svg {
+      width: 14px;
+      height: 14px;
+      color: var(--color-accent);
+    }
+
+    /* Elegant inline contact block */
+    .board-contact-footer {
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      padding: 3rem 2rem;
+    }
+
+    .contact-footer-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    @media (min-width: 768px) {
+      .contact-footer-layout {
+        grid-template-columns: 1.1fr 1fr;
+      }
+    }
+
+    .contact-info-block h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .contact-info-block p {
+      color: var(--color-text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .contact-details-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .contact-detail-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .contact-detail-icon {
+      width: 24px;
+      height: 24px;
+      color: var(--color-accent);
+      flex-shrink: 0;
+    }
+
+    .contact-detail-content h4 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--color-text-muted);
+      margin-bottom: 0.15rem;
+    }
+
+    .contact-detail-content p,
+    .contact-detail-content a {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--color-text-main);
+    }
+
+    /* Simulation Contact Form */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .form-input, .form-textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      background-color: var(--color-bg);
+      color: var(--color-text-main);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      transition: var(--transition-smooth);
+    }
+
+    .form-input:focus, .form-textarea:focus {
+      border-color: var(--color-border-focus);
+      background-color: var(--color-surface);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    /* ==========================================
+       WORKPLACE CLUBS SECTION
+       ========================================== */
+    .clubs-search-bar {
+      margin-bottom: 2.5rem;
+    }
+
+    .clubs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .club-card {
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      transition: var(--transition-smooth);
+    }
+
+    .club-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px var(--color-shadow-hover);
+      border-color: var(--color-accent);
+    }
+
+    .club-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .club-badge-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 4px;
+      background-color: var(--color-surface-hover);
+      color: var(--color-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .club-card:hover .club-badge-icon {
+      background-color: var(--color-primary);
+      color: #FFFFFF;
+    }
+
+    .club-title {
+      font-size: 1.15rem;
+      line-height: 1.35;
+      font-weight: 700;
+    }
+
+    .club-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      border-top: 1px solid var(--color-border);
+      padding-top: 1.25rem;
+    }
+
+    .club-meta-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      color: var(--color-text-muted);
+    }
+
+    .club-meta-row svg {
+      width: 16px;
+      height: 16px;
+      color: var(--color-accent);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .club-meta-label {
+      font-weight: 700;
+      color: var(--color-text-main);
+      display: inline-block;
+    }
+
+    .club-card-footer {
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--color-border);
+    }
+
+    /* ==========================================
+       FOOTER
+       ========================================== */
+    footer {
+      background-color: #14331C; /* Always deep forest green for classic grounding */
+      color: #F9F6F0;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 4rem 0 2rem 0;
+      margin-top: auto;
+      font-size: 0.9rem;
+    }
+
+    body.dark-theme footer {
+      background-color: #0A0D0B;
+    }
+
+    /* Sync auto system preferences */
+    @media (prefers-color-scheme: dark) {
+      :root:not(.light-theme-forced) footer {
+        background-color: #0A0D0B;
+      }
+    }
+
+    .footer-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    @media (min-width: 768px) {
+      .footer-layout {
+        grid-template-columns: 1.2fr 1fr;
+      }
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: #FFFFFF;
+    }
+
+    .footer-logo svg {
+      width: 44px;
+      height: 44px;
+    }
+
+    .footer-logo-title {
+      font-family: var(--font-headings);
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+
+    .footer-desc {
+      opacity: 0.8;
+      max-width: 420px;
+      line-height: 1.6;
+    }
+
+    .footer-nav {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+
+    .footer-column h3 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--color-accent);
+      margin-bottom: 1.25rem;
+      font-family: var(--font-body);
+      font-weight: 700;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .footer-link {
+      color: #E2E8E4;
+      transition: var(--transition-smooth);
+    }
+
+    .footer-link:hover {
+      color: var(--color-accent);
+      padding-left: 4px;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+      color: #A4B2AC;
+      font-size: 0.8rem;
+    }
+
+    @media (min-width: 768px) {
+      .footer-bottom {
+        flex-direction: row;
+      }
+    }
+
+    .footer-copy {
+      text-align: center;
+    }
+
+    .footer-credits {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-credits a {
+      color: #A4B2AC;
+    }
+
+    .footer-credits a:hover {
+      color: var(--color-accent);
+    }
+
+    /* ==========================================
+       RESPONSIVE BREAKPOINTS & FLOATING BAR
+       ========================================== */
+    @media (max-width: 991px) {
+      .header-container {
+        height: 80px;
+      }
+
+      .logo-title {
+        font-size: 1.2rem;
+      }
+
+      .logo-subtitle {
+        font-size: 0.55rem;
+        max-width: 180px;
+      }
+
+      .menu-toggle {
+        display: flex;
+        z-index: 110;
+      }
+
+      .nav-nav {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 280px;
+        height: 100vh;
+        background-color: var(--color-surface);
+        border-left: 1px solid var(--color-border);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 100px 2rem 2rem 2rem;
+        gap: 2rem;
+        transform: translateX(100%);
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        z-index: 105;
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-nav.open {
+        transform: translateX(0);
+      }
+
+      .nav-list {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        gap: 1.5rem;
+      }
+
+      .nav-link {
+        font-size: 1.1rem;
+        width: 100%;
+        display: block;
+      }
+
+      .home-about-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-top: 3.5rem;
+        margin-bottom: 3.5rem;
+      }
+
+      .coal-layout {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo-text {
+        display: none; /* Hide text logo on ultra-mobile to save space */
+      }
+      .hero-actions {
+        flex-direction: column;
+      }
+      .hero-actions .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================
+       HEADER & LOGO BRAND
+       ========================================== -->
+  <header id="site-header">
+    <div class="container header-container">
+      
+      <!-- Brand Seal & Logo -->
+      <a href="#home" class="logo-link" aria-label="Strona Główna SITLiD Katowice">
+        <svg class="logo-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Background Shield -->
+          <rect width="100" height="100" rx="24" fill="var(--color-primary)" />
+          <!-- Wood Ring/Crest -->
+          <circle cx="50" cy="50" r="34" stroke="var(--color-accent)" stroke-width="4" stroke-dasharray="5 2" />
+          <!-- Bespoke Oak Leaf Motif -->
+          <path d="M50 20 C54 32, 59 40, 52 50 C58 52, 68 46, 68 56 C68 62, 58 60, 56 66 C64 68, 66 74, 58 78 C50 82, 50 80, 50 80 C50 80, 50 82, 42 78 C34 74, 36 68, 44 66 C42 60, 32 62, 32 56 C32 46, 42 52, 48 50 C41 40, 46 32, 50 20 Z" fill="var(--color-bg)" />
+          <!-- Central Point -->
+          <circle cx="50" cy="53" r="5" fill="var(--color-accent)" />
+          <path d="M50 53 L50 72" stroke="var(--color-accent)" stroke-width="2" />
+        </svg>
+        <div class="logo-text">
+          <span class="logo-title">SITLiD</span>
+          <span class="logo-subtitle">Oddział Katowice</span>
+        </div>
+      </a>
+
+      <!-- Main Navigation Menu -->
+      <nav class="nav-nav" id="main-nav" aria-label="Główna nawigacja">
+        <ul class="nav-list">
+          <li><a href="#home" class="nav-link active" data-route="home">Główna</a></li>
+          <li><a href="#aktualnosci" class="nav-link" data-route="aktualnosci">Aktualności</a></li>
+          <li><a href="#statut" class="nav-link" data-route="statut">Statut</a></li>
+          <li><a href="#zarzad" class="nav-link" data-route="zarzad">Zarząd Oddziału</a></li>
+          <li><a href="#kola" class="nav-link" data-route="kola">Koła Zakładowe</a></li>
+        </ul>
+      </nav>
+
+      <!-- Action buttons & Dark Mode Toggle -->
+      <div class="action-controls">
+        <!-- Sun / Moon Theme Toggle Switch -->
+        <button class="theme-toggle" id="theme-toggle-btn" aria-label="Przełącz tryb jasny/ciemny">
+          <!-- Sun Icon (Show in Light Theme) -->
+          <svg class="icon-sun" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"></path>
+          </svg>
+          <!-- Moon Icon (Show in Dark Theme) -->
+          <svg class="icon-moon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+          </svg>
+        </button>
+
+        <!-- Responsive Hamburger Trigger -->
+        <button class="menu-toggle" id="menu-toggle-btn" aria-expanded="false" aria-controls="main-nav" aria-label="Otwórz menu mobilne">
+          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 22px; height: 22px;">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ==========================================
+       MAIN CONTENT ROUTER AREA
+       ========================================== -->
+  <main>
+
+    <!-- SECTION 1: HOME (GŁÓWNA) -->
+    <section id="section-home" class="app-section active">
+      
+      <!-- Interactive SVG Forest Blueprint Hero -->
+      <div class="hero">
+        <!-- Pure CSS/SVG Background Engine -->
+        <svg class="hero-visual-bg" viewBox="0 0 1440 400" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Geometric Blueprint Grid -->
+          <defs>
+            <pattern id="blueprint-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.1" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#blueprint-grid)" />
+          
+          <!-- Concentric Ring lines representing wood texture tree rings -->
+          <circle cx="1400" cy="400" r="300" stroke="currentColor" stroke-width="1" stroke-opacity="0.08" fill="none" />
+          <circle cx="1400" cy="400" r="400" stroke="currentColor" stroke-width="1.5" stroke-opacity="0.06" fill="none" />
+          <circle cx="1400" cy="400" r="500" stroke="currentColor" stroke-width="1" stroke-dasharray="5,5" stroke-opacity="0.08" fill="none" />
+          <circle cx="1400" cy="400" r="600" stroke="currentColor" stroke-width="2" stroke-opacity="0.04" fill="none" />
+
+          <!-- Dynamic stylized forest canopy trees waves (layers) -->
+          <path d="M0 400 L0 300 C150 280, 250 350, 450 320 C650 290, 800 360, 1050 310 C1250 270, 1350 340, 1440 280 L1440 400 Z" fill="currentColor" fill-opacity="0.05" />
+          <path d="M0 400 L0 340 C100 320, 200 360, 350 340 C550 310, 700 380, 950 330 C1150 290, 1250 370, 1440 330 L1440 400 Z" fill="currentColor" fill-opacity="0.08" />
+
+          <!-- Pine Tree Blueprint Schematics -->
+          <g stroke="currentColor" stroke-opacity="0.15" stroke-width="1.5" fill="none">
+            <!-- Tree 1 -->
+            <path d="M150 340 L150 200 M150 220 L130 240 M150 220 L170 240 M150 240 L120 270 M150 240 L180 270 M150 260 L110 300 M150 260 L190 300" />
+            <circle cx="150" cy="200" r="3" fill="currentColor" fill-opacity="0.2" />
+            <!-- Tree 2 -->
+            <path d="M850 360 L850 160 M850 190 L825 215 M850 190 L875 215 M850 220 L815 255 M850 220 L885 255 M850 250 L800 300 M850 250 L900 300" />
+            <circle cx="850" cy="160" r="3" fill="currentColor" fill-opacity="0.2" />
+          </g>
+        </svg>
+
+        <div class="container hero-container">
+          <span class="hero-badge">Od 1951 roku</span>
+          <h1 class="hero-title">Stowarzyszenie Inżynierów i Techników Leśnictwa i Drzewnictwa</h1>
+          <p class="hero-description">Oddział Katowice zrzesza inżynierów, techników, pracowników naukowych i praktyków związanych z leśnictwem, ochroną przyrody oraz przemysłem drzewnym w regionie śląskim. Razem tworzymy pomost między bogatym dziedzictwem przyrodniczym a nowoczesną myślą inżynieryjną.</p>
+          <div class="hero-actions">
+            <a href="#aktualnosci" class="btn hero-btn-accent">Zobacz Aktualności</a>
+            <a href="#statut" class="btn hero-btn-white">Zapoznaj się ze Statutem</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Core Values / Pillars -->
+      <div class="container">
+        <div class="home-about-grid">
+          
+          <div class="about-card">
+            <svg class="about-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.967 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.967 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.967 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"></path>
+            </svg>
+            <h3 class="about-card-title">Działalność Naukowa</h3>
+            <p class="about-card-desc">Szerzymy wiedzę leśną i drzewną, organizując sympozja naukowe, konferencje techniczne oraz szkolenia zawodowe we współpracy z uczelniami i RDLP Katowice.</p>
+          </div>
+
+          <div class="about-card">
+            <svg class="about-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+            </svg>
+            <h3 class="about-card-title">Etyka i Standardy</h3>
+            <p class="about-card-desc">Reprezentujemy interesy zawodowe inżynierów i techników, dbając o wysokie standardy etyczne, integrację środowiskową i prestiż zawodów leśnych.</p>
+          </div>
+
+          <div class="about-card">
+            <svg class="about-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"></path>
+            </svg>
+            <h3 class="about-card-title">Rozwój i Technologia</h3>
+            <p class="about-card-desc">Wspieramy wdrażanie nowoczesnych technologii w gospodarce leśnej oraz przetwórstwie drewna, promując ekologiczne i zrównoważone rozwiązania.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Silesian Identity Spotlight Section -->
+      <div class="coal-accent-section">
+        <div class="container coal-layout">
+          <div>
+            <blockquote class="coal-quote">
+              "Zielona kora lasów Beskidów i Górnego Śląska spotyka się tu z tradycją i śląskim etosem solidnej, rzetelnej inżynierii."
+            </blockquote>
+            <p class="coal-author">SITLiD Oddział Katowice — Od 1951 roku w sercu Śląska</p>
+          </div>
+          <div class="coal-text">
+            <p style="margin-bottom: 1.5rem; color: var(--color-text-muted);">Jesteśmy stowarzyszeniem naukowo-technicznym o apolitycznym charakterze. Nasz śląski rodowód uczy nas szacunku do pracy, solidności oraz ścisłego powiązania nauki z praktyką leśną i przemysłową.</p>
+            <ul class="coal-features-list">
+              <li class="coal-feature-item">
+                <svg class="coal-feature-icon" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <div>
+                  <h4 class="coal-feature-title">75 Lat Doświadczenia</h4>
+                  <p class="coal-feature-desc">Zbudowaliśmy silną sieć specjalistów, doradzając przy kluczowych inwestycjach w regionie.</p>
+                </div>
+              </li>
+              <li class="coal-feature-item">
+                <svg class="coal-feature-icon" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <div>
+                  <h4 class="coal-feature-title">Koła Zakładowe w Regionie</h4>
+                  <p class="coal-feature-desc">Działamy bezpośrednio przy nadleśnictwach, instytutach badawczych i przedsiębiorstwach.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Latest News Preview Block (3 items) -->
+      <div class="container home-recent-news">
+        <div class="news-heading-block">
+          <h2 class="section-title">Najnowsze Aktualności</h2>
+          <a href="#aktualnosci" class="btn btn-outline" style="padding: 0.5rem 1.25rem; font-size: 0.85rem;">Wszystkie Wpisy &rarr;</a>
+        </div>
+        <div class="news-grid" id="recent-news-container">
+          <!-- Dynamic 3 latest news items injected via JS -->
+        </div>
+      </div>
+
+    </section>
+
+    <!-- SECTION 2: NEWS (AKTUALNOŚCI) -->
+    <section id="section-aktualnosci" class="app-section">
+      <div class="container">
+        
+        <!-- Filterable Grid View of News -->
+        <div id="news-list-view">
+          <h2 class="section-title section-title-center">Aktualności Oddziału</h2>
+          <p class="section-subtitle">Bądź na bieżąco z życiem naszego stowarzyszenia, nadchodzącymi wydarzeniami, konferencjami oraz komunikatami branżowymi.</p>
+          
+          <!-- Modern Search & Filter controls -->
+          <div class="news-filter-bar">
+            <div class="search-wrapper">
+              <svg class="search-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+              </svg>
+              <input type="text" id="news-search" class="search-input" placeholder="Wyszukaj artykuł po tytule lub treści...">
+            </div>
+            <div class="filter-pills" id="news-pills-container">
+              <button class="filter-pill active" data-category="all">Wszystkie</button>
+              <button class="filter-pill" data-category="Wydarzenia">Wydarzenia</button>
+              <button class="filter-pill" data-category="Szkolenia">Szkolenia</button>
+              <button class="filter-pill" data-category="Ogłoszenia">Ogłoszenia</button>
+            </div>
+          </div>
+
+          <!-- News Cards Grid -->
+          <div class="news-grid" id="all-news-container">
+            <!-- Dynamically populated by JS -->
+          </div>
+        </div>
+
+        <!-- Dynamic Detailed View of a Single News Post (Immersive mode) -->
+        <div id="news-detail-view" style="display: none;">
+          <div class="news-detail-wrapper">
+            <a href="#aktualnosci" class="news-detail-back-btn" id="news-back-to-list-btn">
+              <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+              </svg>
+              Wróć do listy aktualności
+            </a>
+            
+            <article class="news-detail-article" id="news-article-content">
+              <!-- Dynamically populated by JS -->
+            </article>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 3: STATUTE (STATUT) -->
+    <section id="section-statut" class="app-section">
+      <div class="container">
+        <h2 class="section-title section-title-center">Statut Stowarzyszenia</h2>
+        <p class="section-subtitle">Akt prawny regulujący cele, zadania oraz strukturę organizacyjną Stowarzyszenia Inżynierów i Techników Leśnictwa i Drzewnictwa.</p>
+        
+        <div class="statute-layout">
+          <!-- Floating Scroll-Spy Table of Contents -->
+          <aside class="statute-sidebar">
+            <h3 class="toc-title">Spis Treści</h3>
+            <ul class="toc-list" id="statute-toc">
+              <li><a href="#statut-ch1" class="toc-link active">Rozdział I: Postanowienia ogólne</a></li>
+              <li><a href="#statut-ch2" class="toc-link">Rozdział II: Cele i sposoby działania</a></li>
+              <li><a href="#statut-ch3" class="toc-link">Rozdział III: Prawa i obowiązki członków</a></li>
+              <li><a href="#statut-ch4" class="toc-link">Rozdział IV: Władze i struktura</a></li>
+              <li><a href="#statut-ch5" class="toc-link">Rozdział V: Majątek i fundusze</a></li>
+            </ul>
+          </aside>
+
+          <!-- Fully Formatted Statute parchment -->
+          <article class="statute-doc">
+            <div class="statute-header">
+              <h1 class="statute-doc-title">STATUT</h1>
+              <p class="statute-doc-subtitle">Stowarzyszenia Inżynierów i Techników Leśnictwa i Drzewnictwa</p>
+              <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-top: 0.5rem;">(Tekst jednolity ze zmianami zatwierdzonymi przez Walny Zjazd Delegatów)</p>
+              
+              <div class="statute-download">
+                <a href="#" class="btn btn-accent-outline" style="font-size: 0.85rem; padding: 0.5rem 1.25rem;" onclick="alert('Pobieranie dokumentu PDF rozpocznie się wkrótce (Makieta działania).'); return false;">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 14px; height: 14px;"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                  Pobierz Pełny Statut (PDF)
+                </a>
+              </div>
+            </div>
+
+            <!-- Chapter I -->
+            <div id="statut-ch1" class="statute-chapter">
+              <h3>Rozdział I: Postanowienia ogólne</h3>
+              
+              <div class="statute-item">
+                <h4>§ 1. Nazwa i tożsamość</h4>
+                <p>Stowarzyszenie nosi nazwę: Stowarzyszenie Inżynierów i Techników Leśnictwa i Drzewnictwa, w skrócie zwane dalej SITLiD. Jest dobrowolnym, samorządnym i trwałym zrzeszeniem naukowo-technicznym zrzeszającym inżynierów, techników, studentów i uczniów szkół leśnych i drzewnych oraz osoby wykazujące zainteresowanie realizacją celów Stowarzyszenia.</p>
+              </div>
+
+              <div class="statute-item">
+                <h4>§ 2. Obszar działania i status</h4>
+                <p>1. Obszarem działania SITLiD jest terytorium Rzeczypospolitej Polskiej, a siedzibą Zarządu Głównego jest miasto stołeczne Warszawa. Oddział Katowice działa na terenie województwa śląskiego i rejonów przyległych.</p>
+                <p>2. Stowarzyszenie posiada osobowość prawną i opiera swoją działalność na społecznej pracy ogółu członków.</p>
+              </div>
+
+              <div class="statute-item">
+                <h4>§ 3. Symbole i odznaki</h4>
+                <p>SITLiD używa pieczęci, odznak i znaków organizacyjnych zatwierdzonych zgodnie z obowiązującymi przepisami prawa, reprezentujących tradycje leśników i drzewiarzy.</p>
+              </div>
+            </div>
+
+            <!-- Chapter II -->
+            <div id="statut-ch2" class="statute-chapter">
+              <h3>Rozdział II: Cele i sposoby działania</h3>
+              
+              <div class="statute-item">
+                <h4>§ 4. Główne cele Stowarzyszenia</h4>
+                <p>Celami SITLiD są w szczególności:</p>
+                <ul class="statute-list">
+                  <li class="statute-list-item">Szerzenie wiedzy leśnej i drzewnej, podnoszenie kwalifikacji zawodowych kadry inżynieryjno-technicznej.</li>
+                  <li class="statute-list-item">Ochrona naturalnego środowiska przyrodniczego ze szczególnym uwzględnieniem ekosystemów leśnych.</li>
+                  <li class="statute-list-item">Kultywowanie tradycji oraz etosu zawodowego leśników i drzewiarzy.</li>
+                  <li class="statute-list-item">Wspieranie innowacyjności i postępu technicznego w lasach i przemyśle drzewnym.</li>
+                  <li class="statute-list-item">Reprezentowanie i ochrona interesów zawodowych swoich członków.</li>
+                </ul>
+              </div>
+
+              <div class="statute-item">
+                <h4>§ 5. Realizacja celów</h4>
+                <p>Stowarzyszenie realizuje swoje cele poprzez:</p>
+                <ul class="statute-list">
+                  <li class="statute-list-item">Organizowanie odczytów, wykładów, konferencji, szkoleń oraz wyjazdów studialnych.</li>
+                  <li class="statute-list-item">Wydawanie opinii, ekspertyz rzeczoznawców oraz wnioskowanie do organów administracji państwowej i samorządowej.</li>
+                  <li class="statute-list-item">Współpracę z Lasami Państwowymi, instytutami badawczymi oraz zakładami przemysłu drzewnego.</li>
+                  <li class="statute-list-item">Działalność kół zakładowych integrujących lokalne społeczności inżynierów.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Chapter III -->
+            <div id="statut-ch3" class="statute-chapter">
+              <h3>Rozdział III: Prawa i obowiązki członków</h3>
+              
+              <div class="statute-item">
+                <h4>§ 6. Członkostwo</h4>
+                <p>Członkowie Stowarzyszenia dzielą się na: zwyczajnych, wspierających i honorowych.</p>
+              </div>
+
+              <div class="statute-item">
+                <h4>§ 7. Prawa członka zwyczajnego</h4>
+                <p>Członek zwyczajny SITLiD ma prawo:</p>
+                <ul class="statute-list">
+                  <li class="statute-list-item">Czynnego i biernego prawa wyborczego do władz SITLiD.</li>
+                  <li class="statute-list-item">Korzystania z pomocy technicznej, odczytów, szkoleń i bibliotek Stowarzyszenia.</li>
+                  <li class="statute-list-item">Nosić odznakę organizacyjną SITLiD.</li>
+                </ul>
+              </div>
+
+              <div class="statute-item">
+                <h4>§ 8. Obowiązki członka</h4>
+                <p>Członek Stowarzyszenia jest zobowiązany:</p>
+                <ul class="statute-list">
+                  <li class="statute-list-item">Przestrzegać postanowień Statutu, regulaminów i uchwał władz SITLiD.</li>
+                  <li class="statute-list-item">Regularnie opłacać składki członkowskie.</li>
+                  <li class="statute-list-item">Przestrzegać zasad etyki zawodowej i dbać o dobre imię inżynierów i techników leśnictwa.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Chapter IV -->
+            <div id="statut-ch4" class="statute-chapter">
+              <h3>Rozdział IV: Władze i struktura</h3>
+              
+              <div class="statute-item">
+                <h4>§ 9. Władze Oddziału</h4>
+                <p>Władzami Oddziału SITLiD Katowice są:</p>
+                <p>1. Walne Zgromadzenie Członków Oddziału (najwyższa władza).</p>
+                <p>2. Zarząd Oddziału (kieruje bieżącą pracą).</p>
+                <p>3. Komisja Rewizyjna Oddziału (organ kontroli wewnętrznej).</p>
+              </div>
+
+              <div class="statute-item">
+                <h4>§ 10. Kadencja</h4>
+                <p>Kadencja wszystkich obieralnych władz Oddziału trwa 4 lata, a ich wybór odbywa się w głosowaniu tajnym przy obecności co najmniej połowy uprawnionych do głosowania.</p>
+              </div>
+            </div>
+
+            <!-- Chapter V -->
+            <div id="statut-ch5" class="statute-chapter">
+              <h3>Rozdział V: Majątek i fundusze</h3>
+              
+              <div class="statute-item">
+                <h4>§ 11. Źródła finansowania</h4>
+                <p>Majątek i fundusze Oddziału powstają ze składek członkowskich, darowizn, zapisów, dotacji, dochodów z działalności statutowej oraz ofiarności publicznej.</p>
+              </div>
+
+              <div class="statute-item">
+                <h4>§ 12. Zarządzanie majątkiem</h4>
+                <p>Do składania oświadczeń woli w zakresie praw i obowiązków majątkowych Oddziału wymagane jest współdziałanie dwóch uprawnionych osób z Zarządu Oddziału (w tym Przewodniczącego lub Skarbnika).</p>
+              </div>
+            </div>
+
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: BOARD CONTACT (ZARZĄD ODDZIAŁU) -->
+    <section id="section-zarzad" class="app-section">
+      <div class="container">
+        <h2 class="section-title section-title-center">Zarząd Oddziału Katowice</h2>
+        <p class="section-subtitle">Skład osobowy oraz funkcje członków Zarządu wyłonionych w głosowaniu podczas Walnego Zgromadzenia Delegatów.</p>
+        
+        <!-- Board Grid populated dynamically -->
+        <div class="board-grid" id="board-cards-container">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Simulated Contact Form Footer & Branch Office Info -->
+        <div class="board-contact-footer">
+          <div class="contact-footer-layout">
+            
+            <div class="contact-info-block">
+              <h3>Dane Kontaktowe Biura</h3>
+              <p>Zapraszamy do kontaktu telefonicznego, mailowego lub wizyty w biurze oddziału po uprzednim umówieniu terminu.</p>
+              
+              <ul class="contact-details-list">
+                <li class="contact-detail-item">
+                  <svg class="contact-detail-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"></path>
+                  </svg>
+                  <div class="contact-detail-content">
+                    <h4>Adres Siedziby</h4>
+                    <p>ul. Huberta 43/45, 40-543 Katowice</p>
+                    <span style="font-size:0.8rem; color:var(--color-text-muted);">Gmach Regionalnej Dyrekcji Lasów Państwowych</span>
+                  </div>
+                </li>
+
+                <li class="contact-detail-item">
+                  <svg class="contact-detail-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-2.824-1.802-5.194-4.782-6.997-7.611l1.293-.97c.361-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"></path>
+                  </svg>
+                  <div class="contact-detail-content">
+                    <h4>Telefon Biura</h4>
+                    <p><a href="tel:+48325928100">+48 32 592 81 00</a></p>
+                  </div>
+                </li>
+
+                <li class="contact-detail-item">
+                  <svg class="contact-detail-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"></path>
+                  </svg>
+                  <div class="contact-detail-content">
+                    <h4>E-mail</h4>
+                    <p><a href="mailto:katowice@sitlid.pl">katowice@sitlid.pl</a></p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Simulation contact form -->
+            <div>
+              <form class="contact-form" onsubmit="alert('Wiadomość została wysłana pomyślnie! Skontaktujemy się wkrótce (Makieta działania).'); this.reset(); return false;">
+                <h3 style="font-family: var(--font-headings); font-size: 1.3rem; margin-bottom: 0.5rem;">Formularz Kontaktowy</h3>
+                
+                <div class="form-group">
+                  <label for="form-name" class="form-label">Imię i Nazwisko / Firma</label>
+                  <input type="text" id="form-name" class="form-input" placeholder="Jan Kowalski" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="form-email" class="form-label">Adres E-mail</label>
+                  <input type="email" id="form-email" class="form-input" placeholder="adres@email.pl" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="form-message" class="form-label">Wiadomość</label>
+                  <textarea id="form-message" class="form-textarea" placeholder="Wpisz treść wiadomości..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="align-self: flex-start; margin-top: 0.5rem;">Wyślij Wiadomość</button>
+              </form>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 5: WORKPLACE CLUBS (KOŁA ZAKŁADOWE) -->
+    <section id="section-kola" class="app-section">
+      <div class="container">
+        <h2 class="section-title section-title-center">Koła Zakładowe Oddziału</h2>
+        <p class="section-subtitle">Struktura terenowa SITLiD Oddział Katowice. Koła zlokalizowane przy kluczowych placówkach i nadleśnictwach integrujące lokalne zespoły inżynierów i techników.</p>
+        
+        <!-- Search bar for clubs -->
+        <div class="news-filter-bar clubs-search-bar">
+          <div class="search-wrapper" style="max-width: 100%;">
+            <svg class="search-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+            <input type="text" id="clubs-search" class="search-input" placeholder="Wyszukaj koło po nazwie, przewodniczącym lub nadleśnictwie...">
+          </div>
+        </div>
+
+        <!-- Clubs Card Grid populated dynamically -->
+        <div class="clubs-grid" id="clubs-cards-container">
+          <!-- Populated by JS -->
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================
+       FOOTER (CLASSIC FORESTRY GREEN GROUNDING)
+       ========================================== -->
+  <footer id="site-footer">
+    <div class="container">
+      <div class="footer-layout">
+        
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 38px; height: 38px;">
+              <rect width="100" height="100" rx="24" fill="#FAF6F0" />
+              <path d="M50 22 C62 38, 70 52, 50 82 C30 52, 38 38, 50 22 Z" fill="#14331C" />
+              <circle cx="50" cy="52" r="6" fill="#7D5135" />
+            </svg>
+            <span class="footer-logo-title">SITLiD Katowice</span>
+          </div>
+          <p class="footer-desc">Stowarzyszenie Inżynierów i Techników Leśnictwa i Drzewnictwa to organizacja naukowo-techniczna działająca od 1951 r. Nasz Oddział wspiera śląskie leśnictwo i przemysł drzewny poprzez naukę, technikę i integrację.</p>
+        </div>
+
+        <div class="footer-nav">
+          <div class="footer-column">
+            <h3>Nawigacja</h3>
+            <ul class="footer-links">
+              <li><a href="#home" class="footer-link">Główna</a></li>
+              <li><a href="#aktualnosci" class="footer-link">Aktualności</a></li>
+              <li><a href="#statut" class="footer-link">Statut</a></li>
+              <li><a href="#zarzad" class="footer-link">Zarząd</a></li>
+              <li><a href="#kola" class="footer-link">Koła Zakładowe</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Współpraca</h3>
+            <ul class="footer-links">
+              <li><a href="https://www.lasy.gov.pl/" target="_blank" rel="noopener" class="footer-link">Lasy Państwowe &nearr;</a></li>
+              <li><a href="https://www.katowice.lasy.gov.pl/" target="_blank" rel="noopener" class="footer-link">RDLP Katowice &nearr;</a></li>
+              <li><a href="https://www.ibles.pl/" target="_blank" rel="noopener" class="footer-link">Instytut Badawczy Leśnictwa &nearr;</a></li>
+              <li><a href="https://www.sitlid.pl/" target="_blank" rel="noopener" class="footer-link">Zarząd Główny SITLiD &nearr;</a></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copy">
+          &copy; 2026 Stowarzyszenie Inżynierów i Techników Leśnictwa i Drzewnictwa — Oddział Katowice. Wszelkie prawa zastrzeżone.
+        </div>
+        <div class="footer-credits">
+          <a href="#" onclick="alert('SITLiD dba o prywatność swoich członków. Pliki cookies nie są wykorzystywane do śledzenia.'); return false;">Polityka Prywatności</a>
+          <span>|</span>
+          <a href="#home">Góra strony &uarr;</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       VANILLA JAVASCRIPT APPLICATION CORE
+       ========================================== -->
+  <script>
+    /* ==========================================
+       1. DATA ARRAYS STORE (EASY TO MAINTAIN)
+       ========================================== */
+
+    // News Data Base PL
+    const newsData = [
+      {
+        id: "walne-zgromadzenie-2026",
+        title: "Walne Zgromadzenie Członków Oddziału SITLiD w Katowicach",
+        date: "20.05.2026",
+        category: "Wydarzenia",
+        excerpt: "Zapraszamy wszystkich delegatów oraz członków Oddziału Katowice na coroczne Walne Zgromadzenie Sprawozdawcze, które odbędzie się w sali audytoryjnej RDLP Katowice.",
+        content: `
+          <p>Zarząd Oddziału Stowarzyszenia Inżynierów i Techników Leśnictwa i Drzewnictwa w Katowicach serdecznie zaprasza wszystkich członków oraz delegatów Kół Zakładowych na **Walne Zgromadzenie Sprawozdawcze**, które odbędzie się dnia **18 czerwca 2026 roku** o godzinie **10:00** (pierwszy termin) lub o godzinie **10:15** (drugi termin).</p>
+          <p>Spotkanie będzie miało miejsce w sali konferencyjnej im. prof. Jana Szyszko w gmachu Regionalnej Dyrekcji Lasów Państwowych w Katowicach przy ul. Huberta 43/45.</p>
+          
+          <h3>Porządek obrad zgromadzenia:</h3>
+          <ul>
+            <li>Otwarcie obrad i wybór Przewodniczącego oraz Sekretarza Zgromadzenia.</li>
+            <li>Przedstawienie sprawozdania z działalności statutowej i finansowej Oddziału za ubiegły rok obrachunkowy.</li>
+            <li>Przedstawienie sprawozdania Komisji Rewizyjnej wraz z wnioskiem w sprawie absolutorium dla Zarządu Oddziału.</li>
+            <li>Dyskusja nad kierunkami działalności na lata 2026-2027, ze szczególnym uwzględnieniem programu edukacji leśnej młodzieży śląskiej.</li>
+            <li>Wolne wnioski i wolna dyskusja.</li>
+          </ul>
+          
+          <p>Ze względu na wagę podejmowanych uchwał, m.in. w sprawie modernizacji systemu wspierania młodych rzemieślników przemysłu drzewnego, obecność wszystkich delegatów jest wysoce zalecana. Po zakończeniu części oficjalnej zapraszamy na tradycyjny, skromny poczęstunek leśny oraz panel dyskusyjny rzeczoznawców.</p>
+        `
+      },
+      {
+        id: "konferencja-nowoczesne-lesnictwo",
+        title: "Konferencja Naukowo-Techniczna: Adaptacja lasów do zmian klimatu",
+        date: "15.04.2026",
+        category: "Wydarzenia",
+        excerpt: "SITLiD Katowice, we współpracy z Wydziałem Leśnym UR w Krakowie, organizuje ogólnokrajową konferencję poświęconą przebudowie drzewostanów na Śląsku.",
+        content: `
+          <p>Gwałtowne zmiany klimatyczne, susze fizjologiczne oraz nasilenie występowania gradacji szkodników owadzich stawiają przed śląskimi leśnikami bezprecedensowe wyzwania. Oddział SITLiD w Katowicach, we współpracy naukowej z Wydziałem Leśnym Uniwersytetu Rolniczego w Krakowie oraz RDLP Katowice, zaprasza na ogólnopolską konferencję naukowo-techniczną pt. <strong>"Aktywne metody adaptacji lasów gospodarczych do zmian klimatycznych w warunkach silnej antropopresji"</strong>.</p>
+          
+          <p>Konferencja odbędzie się w dniach **22-23 września 2026 roku** w Wiśle. Pierwszy dzień obejmie referaty plenarne, natomiast drugi poświęcony będzie sesjom terenowym w Beskidzie Śląskim (nadleśnictwa Wisła i Ustroń), gdzie zaprezentowane zostaną wieloletnie doświadczenia w przebudowie drzewostanów świerkowych na wielogatunkowe lasy mieszane.</p>
+          
+          <h3>Główne obszary tematyczne sesji naukowych:</h3>
+          <ul>
+            <li>Rola gatunków biocenotycznych i odpornych w odnowieniach sztucznych i naturalnych.</li>
+            <li>Nowoczesne technologie retencji wodnej w lasach górskich i podgórskich.</li>
+            <li>Prognozowanie zagrożeń entomologicznych i fitopatologicznych przy użyciu technik satelitarnych.</li>
+            <li>Przetwórstwo surowca drzewnego pochodzącego z cięć sanitarnych — aspekty technologiczne i rynkowe.</li>
+          </ul>
+          
+          <p>Zapraszamy do nadsyłania zgłoszeń referatów oraz posterów do 15 lipca. Szczegółowy regulamin oraz karta zgłoszeniowa zostaną przesłane drogą mailową do kół zakładowych oraz udostępnione na życzenie w biurze oddziału.</p>
+        `
+      },
+      {
+        id: "szkolenie-brakarskie-2026",
+        title: "Szkolenie dla Inżynierów i Brakarzy Drewna — Zmiany w Klasyfikacji",
+        date: "10.03.2026",
+        category: "Szkolenia",
+        excerpt: "Informujemy o naborze na specjalistyczne szkolenie z zakresu nowych europejskich norm klasyfikacji surowca okrągłego. Ilość miejsc ograniczona.",
+        content: `
+          <p>Wychodząc naprzeciw potrzebom inżynierów zatrudnionych w dziale marketingu nadleśnictw oraz technologów zakładów przemysłu drzewnego, Stowarzyszenie organizuje certyfikowane szkolenie techniczne.</p>
+          <p>Szkolenie nosi tytuł: <strong>"Klasyfikacja jakościowo-wymiarowa drewna okrągłego w oparciu o zaktualizowane warunki techniczne i normy europejskie (EN 1315-1)"</strong>.</p>
+          
+          <h3>Informacje organizacyjne:</h3>
+          <p>Szkolenie poprowadzi wybitny ekspert, wieloletni brakarz i rzeczoznawca SITLiD, mgr inż. Robert Dąb. Program obejmuje 8 godzin wykładów teoretycznych (stacjonarnie w Katowicach) oraz 8 godzin zajęć praktycznych bezpośrednio na składnicy drewna (Nadleśnictwo Rybnik).</p>
+          
+          <h3>Zakres szkolenia:</h3>
+          <ul>
+            <li>Interpretacja zaktualizowanych norm klasyfikacji wad drewna — pęknięcia, zgnilizny, krzywizny.</li>
+            <li>Praktyczne zastosowanie procedur rozliczeniowych i szacowania miąższości surowca.</li>
+            <li>Rozstrzyganie sporów jakościowych między dostawcą a odbiorcą drewna okrągłego.</li>
+            <li>Wydawanie oficjalnych zaświadczeń i certyfikatów brakarskich ukończenia szkolenia sygnowanych przez SITLiD.</li>
+          </ul>
+          
+          <p>Koszt uczestnictwa dla członków SITLiD z opłaconymi składkami jest objęty 50% dofinansowaniem ze środków funduszu szkoleniowego Oddziału. Zapisy przyjmują przewodniczący Kół Zakładowych do dnia **30 maja 2026 r.**</p>
+        `
+      },
+      {
+        id: "jubileusz-75-lecia-oddzialu",
+        title: "Jubileusz 75-lecia Działalności SITLiD Katowice (1951-2026)",
+        date: "25.01.2026",
+        category: "Ogłoszenia",
+        excerpt: "W roku 2026 nasz Oddział świętuje wyjątkowy jubileusz. Przedstawiamy zarys historyczny oraz wstępny plan obchodów rocznicowych zaplanowanych na jesień.",
+        content: `
+          <p>Rok 2026 jest dla naszej społeczności rokiem szczególnym. Mijają dokładnie **75 lata od powołania do życia śląskiego oddziału** Stowarzyszenia Inżynierów i Techników Leśnictwa i Drzewnictwa w Katowicach w 1951 roku.</p>
+          <p>W okresie powojennym, gdy region śląski intensywnie się uprzemysławiał, to właśnie inżynierowie zrzeszeni w naszym oddziale podjęli heroiczny trud rekultywacji terenów zdegradowanych przez przemysł ciężki, tworząc m.in. Leśny Pas Ochronny Górnośląskiego Okręgu Przemysłowego.</p>
+          
+          <h3>Zarys historyczny działalności:</h3>
+          <p>Przez blisko osiem dekad nasz Oddział stanowił forum wymiany myśli technicznej leśników dbających o unikalne lasy Puszczy Pszczyńskiej, Borów Stobrawskich czy Beskidów oraz specjalistów z dynamicznie rozwijających się śląskich zakładów stolarskich, tartaków i fabryk mebli. Wykształciliśmy pokolenia rzeczoznawców, których ekspertyzy stanowiły fundament zrównoważonego zagospodarowania przestrzennego regionu.</p>
+          
+          <h3>Planowane wydarzenia jubileuszowe (Październik 2026):</h3>
+          <ul>
+            <li><strong>Uroczysta Gala Jubileuszowa</strong> w Filharmonii Śląskiej w Katowicach połączona z wręczeniem odznaczeń państwowych oraz Złotych i Srebrnych Odznak Honorowych SITLiD.</li>
+            <li><strong>Wydanie monografii historycznej</strong> pt. "Leśnicy i Drzewiarze na Górnym Śląsku — 75 lat w służbie przyrodzie i technice".</li>
+            <li><strong>Zasadzenie 75 dębów jubileuszowych</strong> na terenie Nadleśnictwa Katowice przez członków stowarzyszenia oraz zaproszonych gości.</li>
+          </ul>
+          
+          <p>Zarząd Oddziału zaprasza wszystkie koła zakładowe do zgłaszania propozycji i pamiątek historycznych (starych fotografii, dokumentów, odznak), które wzbogacą jubileuszową wystawę objazdową. Wspomnienia można przesyłać bezpośrednio do biura oddziału.</p>
+        `
+      }
+    ];
+
+    // Board Members Data PL
+    const boardData = [
+      {
+        role: "Przewodniczący Zarządu",
+        name: "mgr inż. Andrzej Kowalski",
+        desc: "Wieloletni nadleśniczy, specjalista w zakresie hodowli i urządzania lasu, pasjonat tradycji leśnych Górnego Śląska.",
+        phone: "+48 32 592 81 05",
+        email: "a.kowalski@sitlid.pl"
+      },
+      {
+        role: "Wiceprzewodnicząca",
+        name: "dr inż. Maria Nowak",
+        desc: "Pracownik naukowy, wykładowca akademicki. Specjalizuje się w innowacyjnych technologiach przetwórstwa drewna oraz certyfikacji surowca.",
+        phone: "+48 32 592 81 06",
+        email: "m.nowak@sitlid.pl"
+      },
+      {
+        role: "Sekretarz Oddziału",
+        name: "mgr inż. Janusz Śląski",
+        desc: "Koordynator ds. edukacji przyrodniczo-leśnej, odpowiedzialny za kontakty z kołami zakładowymi i integrację członków.",
+        phone: "+48 32 592 81 07",
+        email: "j.slaski@sitlid.pl"
+      },
+      {
+        role: "Skarbnik Oddziału",
+        name: "inż. Elżbieta Lasocka",
+        desc: "Ekonomista, ekspert ds. budżetowych i marketingu w leśnictwie, czuwa nad finansami i funduszami statutowymi SITLiD.",
+        phone: "+48 32 592 81 08",
+        email: "e.lasocka@sitlid.pl"
+      },
+      {
+        role: "Członek Zarządu",
+        name: "mgr inż. Tomasz Borowy",
+        desc: "Inżynier nadzoru, koordynuje projekty ochrony przyrody oraz programy małej retencji nizinnej i górskiej.",
+        phone: "+48 32 592 81 09",
+        email: "t.borowy@sitlid.pl"
+      }
+    ];
+
+    // Workplace Clubs Data PL
+    const clubsData = [
+      {
+        name: "Koło przy RDLP w Katowicach",
+        president: "mgr inż. Wojciech Sosna",
+        location: "Biuro RDLP, ul. Huberta 43/45, Katowice",
+        contact: "w.sosna@katowice.lasy.gov.pl",
+        members: "42 członków"
+      },
+      {
+        name: "Koło przy Nadleśnictwie Katowice",
+        president: "mgr inż. Anna Świerk",
+        location: "ul. Kijowska 37b, 40-754 Katowice",
+        contact: "a.swierk@katowice.lasy.gov.pl",
+        members: "18 członków"
+      },
+      {
+        name: "Koło przy BULiGL Oddział Katowice",
+        president: "mgr inż. Roman Planistowski",
+        location: "Biuro Urządzania Lasu, ul. Kościuszki 226, Katowice",
+        contact: "r.planistowski@buligl.katowice.pl",
+        members: "25 członków"
+      },
+      {
+        name: "Koło przy Nadleśnictwie Rybnik",
+        president: "mgr inż. Krzysztof Dąb",
+        location: "ul. Żołnierzy Września 77, Rybnik",
+        contact: "k.dab@rybnik.lasy.gov.pl",
+        members: "14 członków"
+      },
+      {
+        name: "Koło Partnerskie Przemysłu Drzewnego Śląsk",
+        president: "inż. Marek Tartaczny",
+        location: "Zakład Przemysłu Drzewnego, Orzesze",
+        contact: "m.tartaczny@slaskiedrewno.pl",
+        members: "15 członków"
+      },
+      {
+        name: "Koło przy Nadleśnictwie Kobiór",
+        president: "mgr inż. Jan Pszczyna",
+        location: "ul. Katowicka 141, Kobiór",
+        contact: "j.pszczyna@kobior.lasy.gov.pl",
+        members: "21 członków"
+      }
+    ];
+
+    /* ==========================================
+       2. SINGLE-PAGE ROUTING & MOUNTING ENGINE
+       ========================================== */
+    const sections = {
+      home: document.getElementById('section-home'),
+      aktualnosci: document.getElementById('section-aktualnosci'),
+      statut: document.getElementById('section-statut'),
+      zarzad: document.getElementById('section-zarzad'),
+      kola: document.getElementById('section-kola')
+    };
+
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    function router() {
+      const hash = window.location.hash || '#home';
+      
+      // Close mobile menu automatically on route change
+      document.getElementById('main-nav').classList.remove('open');
+      document.getElementById('menu-toggle-btn').setAttribute('aria-expanded', 'false');
+
+      // Helper to clear nav active states
+      navLinks.forEach(link => link.classList.remove('active'));
+
+      // Check if hash matches specific sub-route e.g., #aktualnosci/id-slug
+      if (hash.startsWith('#aktualnosci/')) {
+        const postId = hash.split('#aktualnosci/')[1];
+        
+        // Match active route navigation pill for visual persistence
+        const newsNavLink = document.querySelector('.nav-link[data-route="aktualnosci"]');
+        if (newsNavLink) newsNavLink.classList.add('active');
+
+        // Mount main section, but activate inner detail subview
+        mountSection('aktualnosci');
+        renderNewsDetail(postId);
+        return;
+      }
+
+      // Standard hash router mapping
+      const route = hash.substring(1);
+      if (sections[route]) {
+        const activeLink = document.querySelector(`.nav-link[data-route="${route}"]`);
+        if (activeLink) activeLink.classList.add('active');
+        
+        mountSection(route);
+
+        // Standard news section handles switching back to grid automatically
+        if (route === 'aktualnosci') {
+          document.getElementById('news-detail-view').style.display = 'none';
+          document.getElementById('news-list-view').style.display = 'block';
+        }
+        
+        // Auto-scroll to top on standard hash changes
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        // Fallback to home
+        window.location.hash = '#home';
+      }
+    }
+
+    function mountSection(routeKey) {
+      Object.keys(sections).forEach(key => {
+        if (key === routeKey) {
+          sections[key].classList.add('active');
+        } else {
+          sections[key].classList.remove('active');
+        }
+      });
+    }
+
+    /* ==========================================
+       3. NEWS MODULE LOGIC (GRID, DETAILS, SEARCH, FILTER)
+       ========================================== */
+
+    // Render 3 recent news on Home
+    function renderRecentNews() {
+      const recentContainer = document.getElementById('recent-news-container');
+      if (!recentContainer) return;
+
+      // Slice 3 most recent entries
+      const recent = newsData.slice(0, 3);
+      let html = '';
+
+      recent.forEach(post => {
+        html += createNewsCardHtml(post);
+      });
+
+      recentContainer.innerHTML = html;
+    }
+
+    // Render Full News Grid
+    function renderAllNews(items = newsData) {
+      const allContainer = document.getElementById('all-news-container');
+      if (!allContainer) return;
+
+      if (items.length === 0) {
+        allContainer.innerHTML = `
+          <div class="news-empty-state">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 48px; height: 48px; margin-bottom: 1rem; color: var(--color-accent);">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+            </svg>
+            <p style="font-weight: 600; font-size: 1.1rem; margin-bottom: 0.25rem;">Brak wyników</p>
+            <p style="font-size: 0.9rem;">Spróbuj zmienić parametry filtrowania lub frazę wyszukiwania.</p>
+          </div>
+        `;
+        return;
+      }
+
+      let html = '';
+      items.forEach(post => {
+        html += createNewsCardHtml(post);
+      });
+      allContainer.innerHTML = html;
+    }
+
+    // Helper news card card HTML constructor
+    function createNewsCardHtml(post) {
+      // Get initials/color style based on category for gorgeous placeholder graphics
+      const categoryColors = {
+        'Wydarzenia': 'background-color: var(--color-primary);',
+        'Szkolenia': 'background-color: var(--color-accent);',
+        'Ogłoszenia': 'background-color: var(--color-text-muted);'
+      };
+      const catStyle = categoryColors[post.category] || 'background-color: var(--color-primary);';
+
+      return `
+        <article class="news-card">
+          <div class="news-card-media" style="${catStyle}">
+            <span class="news-card-category">${post.category}</span>
+            <!-- Abstract decorative foliage vectors instead of heavy images -->
+            <svg class="news-card-bg-pattern" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="50" r="40" stroke="rgba(255,255,255,0.06)" stroke-width="2" />
+              <path d="M50 10 C55 30, 65 40, 50 85 C35 40, 45 30, 50 10 Z" fill="rgba(255,255,255,0.04)" />
+              <path d="M50 30 C58 45, 68 50, 50 80 C32 50, 42 45, 50 30 Z" fill="rgba(255,255,255,0.06)" />
+            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 48px; height: 48px; opacity: 0.15; color:#FFF;">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z" />
+            </svg>
+          </div>
+          <div class="news-card-body">
+            <div class="news-card-meta">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z"></path>
+              </svg>
+              <span>${post.date}</span>
+            </div>
+            <h3 class="news-card-title">
+              <a href="#aktualnosci/${post.id}">${post.title}</a>
+            </h3>
+            <p class="news-card-excerpt">${post.excerpt}</p>
+            <div class="news-card-footer">
+              <a href="#aktualnosci/${post.id}" class="news-read-more">
+                Czytaj więcej
+                <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    // Render News Detailed Subpage View
+    function renderNewsDetail(id) {
+      const post = newsData.find(p => p.id === id);
+      const listView = document.getElementById('news-list-view');
+      const detailView = document.getElementById('news-detail-view');
+      const detailContainer = document.getElementById('news-article-content');
+
+      if (!post || !listView || !detailView || !detailContainer) return;
+
+      detailContainer.innerHTML = `
+        <header class="news-detail-header">
+          <div class="news-detail-category-wrapper">
+            <span class="badge">${post.category}</span>
+          </div>
+          <h1 class="news-detail-title">${post.title}</h1>
+          <div class="news-detail-meta">
+            <div class="news-detail-meta-item">
+              <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z"></path>
+              </svg>
+              <span>Data publikacji: ${post.date}</span>
+            </div>
+            <div class="news-detail-meta-item">
+              <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"></path>
+              </svg>
+              <span>Autor: Zarząd SITLiD Katowice</span>
+            </div>
+          </div>
+        </header>
+        <div class="news-detail-body">
+          ${post.content}
+        </div>
+      `;
+
+      // Transition layouts smooth
+      listView.style.display = 'none';
+      detailView.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Live search & category filters initialization for news
+    function initNewsFilters() {
+      const searchInput = document.getElementById('news-search');
+      const pillsContainer = document.getElementById('news-pills-container');
+
+      if (!searchInput || !pillsContainer) return;
+
+      let activeCategory = 'all';
+      let searchQuery = '';
+
+      function filterNews() {
+        const filtered = newsData.filter(post => {
+          const matchesCategory = activeCategory === 'all' || post.category === activeCategory;
+          const matchesSearch = post.title.toLowerCase().includes(searchQuery) || 
+                                post.excerpt.toLowerCase().includes(searchQuery) ||
+                                post.content.toLowerCase().includes(searchQuery);
+          return matchesCategory && matchesSearch;
+        });
+        renderAllNews(filtered);
+      }
+
+      // Handle query input
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value.toLowerCase().trim();
+        filterNews();
+      });
+
+      // Handle category pill toggle
+      pillsContainer.addEventListener('click', (e) => {
+        const button = e.target.closest('.filter-pill');
+        if (!button) return;
+
+        pillsContainer.querySelectorAll('.filter-pill').forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        activeCategory = button.getAttribute('data-category');
+        filterNews();
+      });
+    }
+
+    /* ==========================================
+       4. BOARD MEMBERS MODULE LOGIC
+       ========================================== */
+    function renderBoardMembers() {
+      const boardContainer = document.getElementById('board-cards-container');
+      if (!boardContainer) return;
+
+      let html = '';
+      boardData.forEach(member => {
+        // Get initials for avatar profile
+        const initials = member.name.split(' ').filter(n => n.includes('.')).map(n => n.replace('.', '')).join('') || member.name.charAt(0);
+        // Clean simplified initials extraction
+        const cleanNameParts = member.name.replace('mgr inż. ', '').replace('dr inż. ', '').split(' ');
+        const displayInitials = (cleanNameParts[0] ? cleanNameParts[0][0] : '') + (cleanNameParts[1] ? cleanNameParts[1][0] : '');
+
+        html += `
+          <div class="board-card">
+            <div class="board-avatar">
+              <span>${displayInitials || 'SL'}</span>
+            </div>
+            <div class="board-role">${member.role}</div>
+            <h3 class="board-name">${member.name}</h3>
+            <p class="board-desc">${member.desc}</p>
+            <div class="board-actions">
+              <a href="tel:${member.phone.replace(/\s+/g, '')}" class="board-action-link">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-2.824-1.802-5.194-4.782-6.997-7.611l1.293-.97c.361-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"></path>
+                </svg>
+                <span>${member.phone}</span>
+              </a>
+              <a href="mailto:${member.email}" class="board-action-link">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"></path>
+                </svg>
+                <span>${member.email}</span>
+              </a>
+            </div>
+          </div>
+        `;
+      });
+      boardContainer.innerHTML = html;
+    }
+
+    /* ==========================================
+       5. WORKPLACE CLUBS MODULE LOGIC
+       ========================================== */
+    function renderClubs(items = clubsData) {
+      const clubsContainer = document.getElementById('clubs-cards-container');
+      if (!clubsContainer) return;
+
+      if (items.length === 0) {
+        clubsContainer.innerHTML = `
+          <div class="news-empty-state" style="grid-column: 1 / -1;">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 48px; height: 48px; margin-bottom: 1rem; color: var(--color-accent);">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+            </svg>
+            <p style="font-weight: 600; font-size: 1.1rem; margin-bottom: 0.25rem;">Nie znaleziono żadnego koła zakładowego</p>
+            <p style="font-size: 0.9rem;">Zmień wyszukiwaną frazę.</p>
+          </div>
+        `;
+        return;
+      }
+
+      let html = '';
+      items.forEach(club => {
+        html += `
+          <div class="club-card">
+            <div class="club-header">
+              <div class="club-badge-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 18px; height: 18px;">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12" />
+                </svg>
+              </div>
+              <h3 class="club-title">${club.name}</h3>
+            </div>
+            <div class="club-body">
+              <div class="club-meta-row">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"></path>
+                </svg>
+                <div>
+                  <span class="club-meta-label">Przewodniczący:</span>
+                  <p>${club.president}</p>
+                </div>
+              </div>
+              <div class="club-meta-row">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"></path>
+                </svg>
+                <div>
+                  <span class="club-meta-label">Lokalizacja:</span>
+                  <p>${club.location}</p>
+                </div>
+              </div>
+              <div class="club-meta-row">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.007 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.071 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94-3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"></path>
+                </svg>
+                <div>
+                  <span class="club-meta-label">Rozmiar koła:</span>
+                  <p>${club.members}</p>
+                </div>
+              </div>
+            </div>
+            <div class="club-card-footer">
+              <a href="mailto:${club.contact}" class="btn btn-outline" style="width: 100%; font-size: 0.85rem; padding: 0.5rem 0;">Napisz do koła</a>
+            </div>
+          </div>
+        `;
+      });
+      clubsContainer.innerHTML = html;
+    }
+
+    // Interactive Club search live logic
+    function initClubsSearch() {
+      const searchInput = document.getElementById('clubs-search');
+      if (!searchInput) return;
+
+      searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        const filtered = clubsData.filter(club => {
+          return club.name.toLowerCase().includes(query) || 
+                 club.president.toLowerCase().includes(query) ||
+                 club.location.toLowerCase().includes(query);
+        });
+        renderClubs(filtered);
+      });
+    }
+
+    /* ==========================================
+       6. ACCESSIBILITY STATUTE SCROLLSPY
+       ========================================== */
+    function initStatuteScrollspy() {
+      const tocLinks = document.querySelectorAll('#statute-toc .toc-link');
+      const chapters = document.querySelectorAll('.statute-chapter');
+      if (tocLinks.length === 0 || chapters.length === 0) return;
+
+      // Intersection Observer settings
+      const observerOptions = {
+        root: null,
+        rootMargin: '-20% 0px -60% 0px', // Target central viewport zone
+        threshold: 0
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            
+            tocLinks.forEach(link => {
+              if (link.getAttribute('href') === `#${id}`) {
+                link.classList.add('active');
+              } else {
+                link.classList.remove('active');
+              }
+            });
+          }
+        });
+      }, observerOptions);
+
+      chapters.forEach(chapter => observer.observe(chapter));
+    }
+
+    /* ==========================================
+       7. LIGHT / DARK THEME SYSTEM ENGINE
+       ========================================== */
+    function initThemeEngine() {
+      const themeBtn = document.getElementById('theme-toggle-btn');
+      if (!themeBtn) return;
+
+      // Checking default active themes (syncing body flags)
+      const isSystemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      
+      // Theme toggling action (state saved solely in memory for runtime)
+      themeBtn.addEventListener('click', () => {
+        const currentDark = document.body.classList.contains('dark-theme');
+        const root = document.documentElement;
+
+        // Force runtime trigger sync state
+        document.body.classList.add('theme-toggle-active');
+
+        if (currentDark) {
+          // Switching to Light mode
+          document.body.classList.remove('dark-theme');
+          root.classList.add('light-theme-forced');
+        } else {
+          // Checking system-forced states to reset
+          if (root.classList.contains('light-theme-forced')) {
+            root.classList.remove('light-theme-forced');
+            // Check if system is natively light, if so explicitly add dark body
+            if (!isSystemDark) {
+              document.body.classList.add('dark-theme');
+            }
+          } else {
+            // Natively light system, toggle to dark
+            document.body.classList.add('dark-theme');
+          }
+        }
+      });
+    }
+
+    /* ==========================================
+       8. RESPONSIVE MOBILE NAVIGATION PANEL
+       ========================================== */
+    function initMobileMenu() {
+      const menuBtn = document.getElementById('menu-toggle-btn');
+      const mainNav = document.getElementById('main-nav');
+
+      if (!menuBtn || !mainNav) return;
+
+      menuBtn.addEventListener('click', () => {
+        const isOpen = mainNav.classList.contains('open');
+        if (isOpen) {
+          mainNav.classList.remove('open');
+          menuBtn.setAttribute('aria-expanded', 'false');
+        } else {
+          mainNav.classList.add('open');
+          menuBtn.setAttribute('aria-expanded', 'true');
+        }
+      });
+
+      // Close menu if clicking outside layout boundaries
+      document.addEventListener('click', (e) => {
+        if (!mainNav.contains(e.target) && !menuBtn.contains(e.target) && mainNav.classList.contains('open')) {
+          mainNav.classList.remove('open');
+          menuBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
+    /* ==========================================
+       9. INITIALIZATION BOOTSTRAP ON LOAD
+       ========================================== */
+    document.addEventListener('DOMContentLoaded', () => {
+      // Setup UI Data feeds
+      renderRecentNews();
+      renderAllNews();
+      renderBoardMembers();
+      renderClubs();
+
+      // Start reactive filters & event modules
+      initNewsFilters();
+      initClubsSearch();
+      initStatuteScrollspy();
+      initThemeEngine();
+      initMobileMenu();
+
+      // Trigger routing
+      router();
+    });
+
+    // Watch for dynamic route history shifts
+    window.addEventListener('hashchange', router);
+  </script>
+</body>
+</html>
