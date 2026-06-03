@@ -1420,6 +1420,59 @@
     /* ==========================================
        WORKPLACE CLUBS SECTION
        ========================================== */
+    #kola-map {
+      height: 480px;
+      width: 100%;
+      border-radius: 4px;
+      border: 1px solid var(--color-border);
+      box-shadow: 0 4px 15px var(--color-shadow);
+      margin-bottom: 2.5rem;
+      position: relative;
+      z-index: 1; /* Make sure map controls don't overlap headers, but don't overflow */
+    }
+
+    .leaflet-container {
+      font-family: var(--font-body) !important;
+    }
+
+    .leaflet-control-container {
+      z-index: 40; /* Keep below header */
+    }
+
+    /* Custom Premium SVG Marker Pin */
+    .custom-marker {
+      background: none !important;
+      border: none !important;
+    }
+
+    .marker-pin-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 3px 5px var(--color-shadow));
+      transition: var(--transition-smooth);
+    }
+
+    .marker-pin {
+      width: 36px;
+      height: 36px;
+      fill: var(--color-accent);
+      stroke: var(--color-surface);
+      stroke-width: 1.5;
+      transition: var(--transition-smooth);
+    }
+
+    .custom-marker:hover .marker-pin-wrapper {
+      transform: scale(1.18);
+      filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.25));
+    }
+
+    .custom-marker:hover .marker-pin {
+      fill: var(--color-primary);
+    }
+
     .clubs-search-bar {
       margin-bottom: 2.5rem;
     }
@@ -1439,12 +1492,20 @@
       flex-direction: column;
       height: 100%;
       transition: var(--transition-smooth);
+      cursor: pointer;
     }
 
     .club-card:hover {
       transform: translateY(-4px);
       box-shadow: 0 10px 25px var(--color-shadow-hover);
       border-color: var(--color-accent);
+    }
+
+    .club-card.club-card-highlight {
+      border-color: var(--color-accent) !important;
+      background-color: var(--color-surface-hover) !important;
+      box-shadow: 0 0 25px rgba(125, 81, 53, 0.4) !important;
+      transform: translateY(-6px) !important;
     }
 
     .club-header {
@@ -1927,6 +1988,9 @@
       }
     }
   </style>
+  <!-- Leaflet Map CSS & JS CDN -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 <body>
 
@@ -2375,9 +2439,12 @@
             <svg class="search-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
             </svg>
-            <input type="text" id="clubs-search" class="search-input" placeholder="Wyszukaj koło po nazwie, przewodniczącym lub nadleśnictwie...">
+            <input type="text" id="clubs-search" class="search-input" placeholder="Wyszukaj koło po nazwie lub nadleśnictwie...">
           </div>
         </div>
+
+        <!-- Interactive Map using Leaflet.js -->
+        <div id="kola-map"></div>
 
         <!-- Clubs Card Grid populated dynamically -->
         <div class="clubs-grid" id="clubs-cards-container">
@@ -2617,48 +2684,45 @@
 
     // Workplace Clubs Data PL
     const clubsData = [
-      {
-        name: "Koło przy RDLP w Katowicach",
-        president: "mgr inż. Wojciech Sosna",
-        location: "Biuro RDLP, ul. Huberta 43/45, Katowice",
-        contact: "w.sosna@katowice.lasy.gov.pl",
-        members: "42 członków"
-      },
-      {
-        name: "Koło przy Nadleśnictwie Katowice",
-        president: "mgr inż. Anna Świerk",
-        location: "ul. Kijowska 37b, 40-754 Katowice",
-        contact: "a.swierk@katowice.lasy.gov.pl",
-        members: "18 członków"
-      },
-      {
-        name: "Koło przy BULiGL Oddział Katowice",
-        president: "mgr inż. Roman Planistowski",
-        location: "Biuro Urządzania Lasu, ul. Kościuszki 226, Katowice",
-        contact: "r.planistowski@buligl.katowice.pl",
-        members: "25 członków"
-      },
-      {
-        name: "Koło przy Nadleśnictwie Rybnik",
-        president: "mgr inż. Krzysztof Dąb",
-        location: "ul. Żołnierzy Września 77, Rybnik",
-        contact: "k.dab@rybnik.lasy.gov.pl",
-        members: "14 członków"
-      },
-      {
-        name: "Koło Partnerskie Przemysłu Drzewnego Śląsk",
-        president: "inż. Marek Tartaczny",
-        location: "Zakład Przemysłu Drzewnego, Orzesze",
-        contact: "m.tartaczny@slaskiedrewno.pl",
-        members: "15 członków"
-      },
-      {
-        name: "Koło przy Nadleśnictwie Kobiór",
-        president: "mgr inż. Jan Pszczyna",
-        location: "ul. Katowicka 141, Kobiór",
-        contact: "j.pszczyna@kobior.lasy.gov.pl",
-        members: "21 członków"
-      }
+      { name: "Koło przy RDLP Katowice", location: "ul. Św. Huberta 43/45, 40-543 Katowice", lat: 50.2129, lng: 19.0102 },
+      { name: "Koło przy Nadleśnictwie Andrychów", location: "ul. Słowackiego 2E, 34-120 Andrychów", lat: 49.8555, lng: 19.3370 },
+      { name: "Koło przy Nadleśnictwie Bielsko", location: "ul. Kopytko 13, 43-382 Bielsko-Biała", lat: 49.8225, lng: 19.0444 },
+      { name: "Koło przy Nadleśnictwie Brynek", location: "ul. Grabowa 3, 42-690 Brynek", lat: 50.4480, lng: 18.8900 },
+      { name: "Koło przy Nadleśnictwie Brzeg", location: "ul. Kilińskiego 1, 49-300 Brzeg", lat: 50.8623, lng: 17.4654 },
+      { name: "Koło przy Nadleśnictwie Chrzanów", location: "ul. Oświęcimska 31, 32-500 Chrzanów", lat: 50.1358, lng: 19.4025 },
+      { name: "Koło przy Nadleśnictwie Gidle", location: "Niesulów 3, 97-540 Gidle", lat: 51.0440, lng: 19.5880 },
+      { name: "Koło przy Nadleśnictwie Herby", location: "ul. Lubliniecka 6, 42-284 Herby", lat: 50.7050, lng: 18.8320 },
+      { name: "Koło przy Nadleśnictwie Jeleśnia", location: "ul. Suska 5, 34-340 Jeleśnia", lat: 49.6780, lng: 19.2580 },
+      { name: "Koło przy Nadleśnictwie Katowice", location: "ul. Kijowska 37b, 40-754 Katowice", lat: 50.2060, lng: 18.9870 },
+      { name: "Koło przy Nadleśnictwie Kędzierzyn", location: "ul. Brzozowa 48, Stara Kuźnia, 47-246 Kotlarnia", lat: 50.3500, lng: 18.2100 },
+      { name: "Koło przy Nadleśnictwie Kluczbork", location: "ul. Mickiewicza 8, 46-200 Kluczbork", lat: 50.9727, lng: 18.2155 },
+      { name: "Koło przy Nadleśnictwie Kłobuck", location: "ul. Zakrzewska 85, 42-100 Kłobuck", lat: 50.9055, lng: 18.9310 },
+      { name: "Koło przy Nadleśnictwie Kobiór", location: "ul. Katowicka 141, 43-211 Piasek", lat: 50.0833, lng: 18.9833 },
+      { name: "Koło przy Nadleśnictwie Koniecpol", location: "ul. Różana 11, 42-230 Koniecpol", lat: 50.7680, lng: 19.6840 },
+      { name: "Koło przy Nadleśnictwie Koszęcin", location: "ul. Sobieskiego 1, 42-286 Koszęcin", lat: 50.6670, lng: 18.8360 },
+      { name: "Koło przy Nadleśnictwie Kup", location: "ul. 1-go Maja 9, 46-082 Kup", lat: 50.7200, lng: 17.9600 },
+      { name: "Koło przy Nadleśnictwie Lubliniec", location: "ul. Myśliwska 1, 42-700 Lubliniec", lat: 50.6730, lng: 18.6930 },
+      { name: "Koło przy Nadleśnictwie Namysłów", location: "ul. Marii Skłodowskiej-Curie 14A, 46-100 Namysłów", lat: 51.0760, lng: 17.7230 },
+      { name: "Koło przy Nadleśnictwie Olesno", location: "ul. Gorzowska 74, 46-300 Olesno", lat: 50.8760, lng: 18.4230 },
+      { name: "Koło przy Nadleśnictwie Olkusz", location: "ul. Łukasińskiego 3, 32-300 Olkusz", lat: 50.2795, lng: 19.5640 },
+      { name: "Koło przy Nadleśnictwie Opole", location: "ul. Groszowicka 10, 45-517 Opole", lat: 50.6751, lng: 17.9213 },
+      { name: "Koło przy Nadleśnictwie Prudnik", location: "ul. Dąbrowskiego 34, 48-200 Prudnik", lat: 50.3220, lng: 17.5780 },
+      { name: "Koło przy Nadleśnictwie Prószków", location: "ul. Opolska 11, 46-060 Prószków", lat: 50.6170, lng: 17.8880 },
+      { name: "Koło przy Nadleśnictwie Rudy Raciborskie", location: "ul. Rogera 1, 47-430 Rudy", lat: 50.0580, lng: 18.3100 },
+      { name: "Koło przy Nadleśnictwie Rudziniec", location: "ul. Leśna 7, 44-160 Rudziniec", lat: 50.3180, lng: 18.6540 },
+      { name: "Koło przy Nadleśnictwie Rybnik", location: "ul. Kościuszki 36, 44-200 Rybnik", lat: 50.0971, lng: 18.5441 },
+      { name: "Koło przy Nadleśnictwie Siewierz", location: "Łysa Góra 6, 42-470 Siewierz", lat: 50.4673, lng: 19.2093 },
+      { name: "Koło przy Nadleśnictwie Strzelce Opolskie", location: "ul. Moniuszki 7, 47-100 Strzelce Opolskie", lat: 50.5140, lng: 18.3070 },
+      { name: "Koło przy Nadleśnictwie Sucha", location: "ul. Zamkowa 7, 34-200 Sucha Beskidzka", lat: 49.7430, lng: 19.5990 },
+      { name: "Koło przy Nadleśnictwie Świerklaniec", location: "ul. Oświęcimska 19, 42-622 Świerklaniec", lat: 50.4830, lng: 18.9370 },
+      { name: "Koło przy Nadleśnictwie Tułowice", location: "ul. Parkowa 14/14a, 49-130 Tułowice", lat: 50.7310, lng: 17.6220 },
+      { name: "Koło przy Nadleśnictwie Turawa", location: "ul. Opolska 35, 46-045 Turawa", lat: 50.6840, lng: 18.1210 },
+      { name: "Koło przy Nadleśnictwie Ujsoły", location: "ul. Św. Huberta 2, 34-371 Ujsoły", lat: 49.5440, lng: 18.9600 },
+      { name: "Koło przy Nadleśnictwie Ustroń", location: "ul. 3 Maja 108, 43-450 Ustroń", lat: 49.7180, lng: 18.8220 },
+      { name: "Koło przy Nadleśnictwie Węgierska Górka", location: "ul. Zielona 62, 34-350 Węgierska Górka", lat: 49.6960, lng: 19.1460 },
+      { name: "Koło przy Nadleśnictwie Wisła", location: "ul. Czarne 6, 43-460 Wisła", lat: 49.6503, lng: 18.8554 },
+      { name: "Koło przy Nadleśnictwie Zawadzkie", location: "ul. Strzelecka 6, 47-120 Zawadzkie", lat: 50.6030, lng: 18.4780 },
+      { name: "Koło przy Nadleśnictwie Złoty Potok", location: "ul. Kościuszki 2, Złoty Potok, 42-253 Janów", lat: 50.7260, lng: 19.4810 }
     ];
 
     /* ==========================================
@@ -2710,6 +2774,12 @@
         if (route === 'aktualnosci') {
           document.getElementById('news-detail-view').style.display = 'none';
           document.getElementById('news-list-view').style.display = 'block';
+        }
+
+        if (route === 'kola' && kolaMap) {
+          setTimeout(() => {
+            kolaMap.invalidateSize();
+          }, 100);
         }
         
         // Auto-scroll to top on standard hash changes
@@ -2971,6 +3041,91 @@
     /* ==========================================
        5. WORKPLACE CLUBS MODULE LOGIC
        ========================================== */
+    let kolaMap;
+    const markers = {}; // Store marker instances indexed by original clubsData index
+
+    function initKolaMap() {
+      const mapContainer = document.getElementById('kola-map');
+      if (!mapContainer) return;
+
+      // Initialize map
+      kolaMap = L.map('kola-map').setView([50.26, 19.02], 8);
+
+      // Add base OSM tiles
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(kolaMap);
+
+      // Add markers for all clubs
+      const customIcon = L.divIcon({
+        className: 'custom-marker',
+        html: `
+          <div class="marker-pin-wrapper">
+            <svg class="marker-pin" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+            </svg>
+          </div>
+        `,
+        iconSize: [36, 36],
+        iconAnchor: [18, 36],
+        popupAnchor: [0, -36]
+      });
+
+      clubsData.forEach((club, index) => {
+        if (!club.lat || !club.lng) return;
+        const marker = L.marker([club.lat, club.lng], { icon: customIcon }).addTo(kolaMap);
+        
+        const popupContent = `
+          <div style="font-family: var(--font-body); font-size: 0.9rem; line-height: 1.4;">
+            <strong style="color: var(--color-primary); font-family: var(--font-headings); font-size: 1rem; display: block; margin-bottom: 0.25rem;">${club.name}</strong>
+            <span style="color: var(--color-text-muted); display: block;">${club.location}</span>
+          </div>
+        `;
+        marker.bindPopup(popupContent);
+        
+        // Setup click handler to highlight corresponding card below
+        marker.on('click', () => {
+          highlightClubCard(index);
+        });
+
+        markers[index] = marker;
+      });
+    }
+
+    window.focusClubOnMap = function(index) {
+      const club = clubsData[index];
+      if (!club || !kolaMap || !markers[index]) return;
+      
+      // Pan to marker and open popup
+      kolaMap.setView([club.lat, club.lng], 11);
+      markers[index].openPopup();
+    };
+
+    window.highlightClubCard = function(index) {
+      const cardId = `club-card-${index}`;
+      const cardElement = document.getElementById(cardId);
+      
+      // If the card is filtered out, clear search to expose it
+      if (!cardElement) {
+        const searchInput = document.getElementById('clubs-search');
+        if (searchInput && searchInput.value !== '') {
+          searchInput.value = '';
+          renderClubs(clubsData);
+        }
+      }
+
+      // Query element again
+      const element = document.getElementById(cardId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        element.classList.add('club-card-highlight');
+        
+        setTimeout(() => {
+          element.classList.remove('club-card-highlight');
+        }, 1500);
+      }
+    };
+
     function renderClubs(items = clubsData) {
       const clubsContainer = document.getElementById('clubs-cards-container');
       if (!clubsContainer) return;
@@ -2990,8 +3145,9 @@
 
       let html = '';
       items.forEach(club => {
+        const originalIndex = clubsData.findIndex(c => c.name === club.name);
         html += `
-          <div class="club-card">
+          <div class="club-card" id="club-card-${originalIndex}" onclick="focusClubOnMap(${originalIndex})">
             <div class="club-header">
               <div class="club-badge-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 18px; height: 18px;">
@@ -3003,15 +3159,6 @@
             <div class="club-body">
               <div class="club-meta-row">
                 <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"></path>
-                </svg>
-                <div>
-                  <span class="club-meta-label">Przewodniczący:</span>
-                  <p>${club.president}</p>
-                </div>
-              </div>
-              <div class="club-meta-row">
-                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path>
                   <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"></path>
                 </svg>
@@ -3020,18 +3167,6 @@
                   <p>${club.location}</p>
                 </div>
               </div>
-              <div class="club-meta-row">
-                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.007 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.071 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94-3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"></path>
-                </svg>
-                <div>
-                  <span class="club-meta-label">Rozmiar koła:</span>
-                  <p>${club.members}</p>
-                </div>
-              </div>
-            </div>
-            <div class="club-card-footer">
-              <a href="mailto:${club.contact}" class="btn btn-outline" style="width: 100%; font-size: 0.85rem; padding: 0.5rem 0;">Napisz do koła</a>
             </div>
           </div>
         `;
@@ -3048,7 +3183,6 @@
         const query = e.target.value.toLowerCase().trim();
         const filtered = clubsData.filter(club => {
           return club.name.toLowerCase().includes(query) || 
-                 club.president.toLowerCase().includes(query) ||
                  club.location.toLowerCase().includes(query);
         });
         renderClubs(filtered);
@@ -3172,6 +3306,7 @@
       initStatuteScrollspy();
       initThemeEngine();
       initMobileMenu();
+      initKolaMap();
 
       // Trigger routing
       router();
