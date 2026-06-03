@@ -313,6 +313,18 @@
       height: 48px;
     }
 
+    .logo-img {
+      height: 52px;
+      width: auto;
+      object-fit: contain;
+      border-radius: 4px;
+      transition: var(--transition-smooth);
+    }
+
+    .logo-img:hover {
+      transform: scale(1.03);
+    }
+
     .logo-text {
       display: flex;
       flex-direction: column;
@@ -1917,23 +1929,8 @@
   <header id="site-header">
     <div class="container header-container">
       
-      <!-- Brand Seal & Logo -->
       <a href="#home" class="logo-link" aria-label="Strona Główna SITLiD Katowice">
-        <svg class="logo-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Background Shield -->
-          <rect width="100" height="100" rx="24" fill="var(--color-primary)" />
-          <!-- Wood Ring/Crest -->
-          <circle cx="50" cy="50" r="34" stroke="var(--color-accent)" stroke-width="4" stroke-dasharray="5 2" />
-          <!-- Bespoke Oak Leaf Motif -->
-          <path d="M50 20 C54 32, 59 40, 52 50 C58 52, 68 46, 68 56 C68 62, 58 60, 56 66 C64 68, 66 74, 58 78 C50 82, 50 80, 50 80 C50 80, 50 82, 42 78 C34 74, 36 68, 44 66 C42 60, 32 62, 32 56 C32 46, 42 52, 48 50 C41 40, 46 32, 50 20 Z" fill="var(--color-bg)" />
-          <!-- Central Point -->
-          <circle cx="50" cy="53" r="5" fill="var(--color-accent)" />
-          <path d="M50 53 L50 72" stroke="var(--color-accent)" stroke-width="2" />
-        </svg>
-        <div class="logo-text">
-          <span class="logo-title">SITLiD</span>
-          <span class="logo-subtitle">Oddział Katowice</span>
-        </div>
+        <img src="https://www.sitlid.pl/wp-content/themes/sitlid/img/logo.jpg" alt="Logo SITLiD" class="logo-img">
       </a>
 
       <!-- Main Navigation Menu -->
@@ -2423,12 +2420,7 @@
         
         <div class="footer-brand">
           <div class="footer-logo">
-            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 38px; height: 38px;">
-              <rect width="100" height="100" rx="24" fill="#FAF6F0" />
-              <path d="M50 22 C62 38, 70 52, 50 82 C30 52, 38 38, 50 22 Z" fill="#14331C" />
-              <circle cx="50" cy="52" r="6" fill="#7D5135" />
-            </svg>
-            <span class="footer-logo-title">SITLiD Katowice</span>
+            <img src="https://www.sitlid.pl/wp-content/themes/sitlid/img/logo.jpg" alt="Logo SITLiD" class="logo-img">
           </div>
           <p class="footer-desc">Stowarzyszenie Inżynierów i Techników Leśnictwa i Drzewnictwa to organizacja naukowo-techniczna działająca od 1951 r. Nasz Oddział wspiera śląskie leśnictwo i przemysł drzewny poprzez naukę, technikę i integrację.</p>
         </div>
