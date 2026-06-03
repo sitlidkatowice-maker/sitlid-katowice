@@ -1710,6 +1710,203 @@
         width: 100%;
       }
     }
+
+    /* ==========================================
+       DEDICATED PHOTO GALLERY & LIGHTBOX STYLES
+       ========================================== */
+    .news-card-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-smooth);
+    }
+    
+    .news-card:hover .news-card-img {
+      transform: scale(1.05);
+    }
+
+    .news-detail-gallery-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 3rem 0 1rem 0;
+      border-top: 1px solid var(--color-border);
+      padding-top: 2rem;
+      color: var(--color-text-main);
+    }
+
+    .news-detail-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .news-gallery-item {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 1px solid var(--color-border);
+      background-color: var(--color-hero-bg);
+    }
+
+    .news-gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-smooth);
+    }
+
+    .news-gallery-item:hover img {
+      transform: scale(1.06);
+    }
+
+    .news-gallery-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+      opacity: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity var(--transition-smooth);
+      z-index: 2;
+    }
+
+    .news-gallery-item:hover .news-gallery-overlay {
+      opacity: 1;
+    }
+
+    .news-gallery-overlay svg {
+      width: 28px;
+      height: 28px;
+      color: #fff;
+    }
+
+    /* Lightbox Modal */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(10, 15, 12, 0.95); /* Deep slate-green-black */
+      backdrop-filter: blur(10px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.3s ease;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 80%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .lightbox-content img {
+      max-width: 100%;
+      max-height: 80vh;
+      object-fit: contain;
+      border-radius: 4px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      font-size: 2.5rem;
+      color: #fff;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 2100;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.05);
+      transition: background-color var(--transition-smooth);
+    }
+
+    .lightbox-close:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .lightbox-prev, .lightbox-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 3rem;
+      color: #fff;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 2100;
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.05);
+      transition: background-color var(--transition-smooth);
+    }
+
+    .lightbox-prev:hover, .lightbox-next:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .lightbox-prev {
+      left: 2rem;
+    }
+
+    .lightbox-next {
+      right: 2rem;
+    }
+
+    .lightbox-counter {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-top: 1rem;
+      letter-spacing: 1px;
+    }
+
+    @media (max-width: 768px) {
+      .lightbox-prev, .lightbox-next {
+        width: 44px;
+        height: 44px;
+        font-size: 2rem;
+      }
+      .lightbox-prev {
+        left: 0.5rem;
+      }
+      .lightbox-next {
+        right: 0.5rem;
+      }
+      .lightbox-close {
+        top: 1rem;
+        right: 1rem;
+        width: 40px;
+        height: 40px;
+        font-size: 2rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -2284,95 +2481,40 @@
     // News Data Base PL
     const newsData = [
       {
-        id: "walne-zgromadzenie-2026",
-        title: "Walne Zgromadzenie Członków Oddziału SITLiD w Katowicach",
-        date: "20.05.2026",
+        id: "jubileusz-75-lecia-i-dyskusja-o-przyszlosci-lasow",
+        title: "Jubileusz 75-lecia i dyskusja o przyszłości lasów w Polsce",
+        date: "28.05.2026",
+        author: "Jarosław Żaba, Sekretarz ZO SITLiD w Katowicach",
         category: "Wydarzenia",
-        excerpt: "Zapraszamy wszystkich delegatów oraz członków Oddziału Katowice na coroczne Walne Zgromadzenie Sprawozdawcze, które odbędzie się w sali audytoryjnej RDLP Katowice.",
+        excerpt: "W dniach 13–15 maja 2026 r. nadmorskie Orzechowo Morskie stało się areną kluczowych dyskusji o przyszłości polskiego leśnictwa przy okazji XXV KZD i jubileuszu 75-lecia SITLiD.",
         content: `
-          <p>Zarząd Oddziału Stowarzyszenia Inżynierów i Techników Leśnictwa i Drzewnictwa w Katowicach serdecznie zaprasza wszystkich członków oraz delegatów Kół Zakładowych na **Walne Zgromadzenie Sprawozdawcze**, które odbędzie się dnia **18 czerwca 2026 roku** o godzinie **10:00** (pierwszy termin) lub o godzinie **10:15** (drugi termin).</p>
-          <p>Spotkanie będzie miało miejsce w sali konferencyjnej im. prof. Jana Szyszko w gmachu Regionalnej Dyrekcji Lasów Państwowych w Katowicach przy ul. Huberta 43/45.</p>
-          
-          <h3>Porządek obrad zgromadzenia:</h3>
-          <ul>
-            <li>Otwarcie obrad i wybór Przewodniczącego oraz Sekretarza Zgromadzenia.</li>
-            <li>Przedstawienie sprawozdania z działalności statutowej i finansowej Oddziału za ubiegły rok obrachunkowy.</li>
-            <li>Przedstawienie sprawozdania Komisji Rewizyjnej wraz z wnioskiem w sprawie absolutorium dla Zarządu Oddziału.</li>
-            <li>Dyskusja nad kierunkami działalności na lata 2026-2027, ze szczególnym uwzględnieniem programu edukacji leśnej młodzieży śląskiej.</li>
-            <li>Wolne wnioski i wolna dyskusja.</li>
-          </ul>
-          
-          <p>Ze względu na wagę podejmowanych uchwał, m.in. w sprawie modernizacji systemu wspierania młodych rzemieślników przemysłu drzewnego, obecność wszystkich delegatów jest wysoce zalecana. Po zakończeniu części oficjalnej zapraszamy na tradycyjny, skromny poczęstunek leśny oraz panel dyskusyjny rzeczoznawców.</p>
-        `
+          <p>W dniach 13–15 maja 2026 r. nadmorskie Orzechowo Morskie (RDLP w Szczecinku) stało się areną kluczowych dyskusji o przyszłości polskiego leśnictwa. SITLiD świętowało jubileusz 75-lecia i obradowano podczas XXV Krajowego Zjazdu Delegatów. Katowicki Oddział reprezentowali: Waleria Kosman, Bożena Kawecka, Piotr Król, Grzegorz Skrobek, Jarosław Żaba, Krzysztof Rydz, Krzysztof Steczek i Wojciech Kohut.</p>
+          <p>Głównym punktem była konferencja naukowo-techniczna pt. „Leśnictwo i drzewnictwo przyszłości – polskie lasy wobec polaryzacji oczekiwań", otwarta przez dr inż. Andrzeja Kundzewicza. Podczas XXV KZD wybrano nowe władze na 2026–2030: Przewodniczącym pozostał dr inż. Andrzej Kundzewicz, Sekretarzem Generalnym – Anna Staniszewska. Bożena Kawecka otrzymała odznakę „Zasłużony Senior SITLiD". Waleria Kosman, Bożena Kawecka i Piotr Król weszli w skład nowych władz krajowych.</p>
+        `,
+        images: [
+          "https://www.katowice.lasy.gov.pl/image/journal/article?img_id=54133756&t=1779951946736&width=600",
+          "https://www.katowice.lasy.gov.pl/image/journal/article?img_id=54133759&t=1779951946756&width=600",
+          "https://www.katowice.lasy.gov.pl/image/journal/article?img_id=54133762&t=1779951946770&width=600",
+          "https://www.katowice.lasy.gov.pl/image/journal/article?img_id=54133765&t=1779951946784&width=600",
+          "https://www.katowice.lasy.gov.pl/image/journal/article?img_id=54133768&t=1779951946799&width=600",
+          "https://www.katowice.lasy.gov.pl/image/journal/article?img_id=54133771&t=1779951946815&width=600",
+          "https://www.katowice.lasy.gov.pl/image/journal/article?img_id=54133774&t=1779951946838&width=600"
+        ]
       },
       {
-        id: "konferencja-nowoczesne-lesnictwo",
-        title: "Konferencja Naukowo-Techniczna: Adaptacja lasów do zmian klimatu",
-        date: "15.04.2026",
+        id: "zwyczajny-zjazd-delegatow-kol-sitlid-katowice",
+        title: "Zwyczajny Zjazd Delegatów Kół SITLiD Oddział Katowice",
+        date: "28.05.2026",
+        author: "Jarosław Żaba, Sekretarz ZO",
         category: "Wydarzenia",
-        excerpt: "SITLiD Katowice, we współpracy z Wydziałem Leśnym UR w Krakowie, organizuje ogólnokrajową konferencję poświęconą przebudowie drzewostanów na Śląsku.",
+        excerpt: "18 lutego 2026 r. w siedzibie RDLP w Katowicach odbył się Zwyczajny Zjazd Delegatów Kół SITLiD. Wybrano nowy Zarząd Oddziału na kadencję 2026–2029.",
         content: `
-          <p>Gwałtowne zmiany klimatyczne, susze fizjologiczne oraz nasilenie występowania gradacji szkodników owadzich stawiają przed śląskimi leśnikami bezprecedensowe wyzwania. Oddział SITLiD w Katowicach, we współpracy naukowej z Wydziałem Leśnym Uniwersytetu Rolniczego w Krakowie oraz RDLP Katowice, zaprasza na ogólnopolską konferencję naukowo-techniczną pt. <strong>"Aktywne metody adaptacji lasów gospodarczych do zmian klimatycznych w warunkach silnej antropopresji"</strong>.</p>
-          
-          <p>Konferencja odbędzie się w dniach **22-23 września 2026 roku** w Wiśle. Pierwszy dzień obejmie referaty plenarne, natomiast drugi poświęcony będzie sesjom terenowym w Beskidzie Śląskim (nadleśnictwa Wisła i Ustroń), gdzie zaprezentowane zostaną wieloletnie doświadczenia w przebudowie drzewostanów świerkowych na wielogatunkowe lasy mieszane.</p>
-          
-          <h3>Główne obszary tematyczne sesji naukowych:</h3>
-          <ul>
-            <li>Rola gatunków biocenotycznych i odpornych w odnowieniach sztucznych i naturalnych.</li>
-            <li>Nowoczesne technologie retencji wodnej w lasach górskich i podgórskich.</li>
-            <li>Prognozowanie zagrożeń entomologicznych i fitopatologicznych przy użyciu technik satelitarnych.</li>
-            <li>Przetwórstwo surowca drzewnego pochodzącego z cięć sanitarnych — aspekty technologiczne i rynkowe.</li>
-          </ul>
-          
-          <p>Zapraszamy do nadsyłania zgłoszeń referatów oraz posterów do 15 lipca. Szczegółowy regulamin oraz karta zgłoszeniowa zostaną przesłane drogą mailową do kół zakładowych oraz udostępnione na życzenie w biurze oddziału.</p>
-        `
-      },
-      {
-        id: "szkolenie-brakarskie-2026",
-        title: "Szkolenie dla Inżynierów i Brakarzy Drewna — Zmiany w Klasyfikacji",
-        date: "10.03.2026",
-        category: "Szkolenia",
-        excerpt: "Informujemy o naborze na specjalistyczne szkolenie z zakresu nowych europejskich norm klasyfikacji surowca okrągłego. Ilość miejsc ograniczona.",
-        content: `
-          <p>Wychodząc naprzeciw potrzebom inżynierów zatrudnionych w dziale marketingu nadleśnictw oraz technologów zakładów przemysłu drzewnego, Stowarzyszenie organizuje certyfikowane szkolenie techniczne.</p>
-          <p>Szkolenie nosi tytuł: <strong>"Klasyfikacja jakościowo-wymiarowa drewna okrągłego w oparciu o zaktualizowane warunki techniczne i normy europejskie (EN 1315-1)"</strong>.</p>
-          
-          <h3>Informacje organizacyjne:</h3>
-          <p>Szkolenie poprowadzi wybitny ekspert, wieloletni brakarz i rzeczoznawca SITLiD, mgr inż. Robert Dąb. Program obejmuje 8 godzin wykładów teoretycznych (stacjonarnie w Katowicach) oraz 8 godzin zajęć praktycznych bezpośrednio na składnicy drewna (Nadleśnictwo Rybnik).</p>
-          
-          <h3>Zakres szkolenia:</h3>
-          <ul>
-            <li>Interpretacja zaktualizowanych norm klasyfikacji wad drewna — pęknięcia, zgnilizny, krzywizny.</li>
-            <li>Praktyczne zastosowanie procedur rozliczeniowych i szacowania miąższości surowca.</li>
-            <li>Rozstrzyganie sporów jakościowych między dostawcą a odbiorcą drewna okrągłego.</li>
-            <li>Wydawanie oficjalnych zaświadczeń i certyfikatów brakarskich ukończenia szkolenia sygnowanych przez SITLiD.</li>
-          </ul>
-          
-          <p>Koszt uczestnictwa dla członków SITLiD z opłaconymi składkami jest objęty 50% dofinansowaniem ze środków funduszu szkoleniowego Oddziału. Zapisy przyjmują przewodniczący Kół Zakładowych do dnia **30 maja 2026 r.**</p>
-        `
-      },
-      {
-        id: "jubileusz-75-lecia-oddzialu",
-        title: "Jubileusz 75-lecia Działalności SITLiD Katowice (1951-2026)",
-        date: "25.01.2026",
-        category: "Ogłoszenia",
-        excerpt: "W roku 2026 nasz Oddział świętuje wyjątkowy jubileusz. Przedstawiamy zarys historyczny oraz wstępny plan obchodów rocznicowych zaplanowanych na jesień.",
-        content: `
-          <p>Rok 2026 jest dla naszej społeczności rokiem szczególnym. Mijają dokładnie **75 lata od powołania do życia śląskiego oddziału** Stowarzyszenia Inżynierów i Techników Leśnictwa i Drzewnictwa w Katowicach w 1951 roku.</p>
-          <p>W okresie powojennym, gdy region śląski intensywnie się uprzemysławiał, to właśnie inżynierowie zrzeszeni w naszym oddziale podjęli heroiczny trud rekultywacji terenów zdegradowanych przez przemysł ciężki, tworząc m.in. Leśny Pas Ochronny Górnośląskiego Okręgu Przemysłowego.</p>
-          
-          <h3>Zarys historyczny działalności:</h3>
-          <p>Przez blisko osiem dekad nasz Oddział stanowił forum wymiany myśli technicznej leśników dbających o unikalne lasy Puszczy Pszczyńskiej, Borów Stobrawskich czy Beskidów oraz specjalistów z dynamicznie rozwijających się śląskich zakładów stolarskich, tartaków i fabryk mebli. Wykształciliśmy pokolenia rzeczoznawców, których ekspertyzy stanowiły fundament zrównoważonego zagospodarowania przestrzennego regionu.</p>
-          
-          <h3>Planowane wydarzenia jubileuszowe (Październik 2026):</h3>
-          <ul>
-            <li><strong>Uroczysta Gala Jubileuszowa</strong> w Filharmonii Śląskiej w Katowicach połączona z wręczeniem odznaczeń państwowych oraz Złotych i Srebrnych Odznak Honorowych SITLiD.</li>
-            <li><strong>Wydanie monografii historycznej</strong> pt. "Leśnicy i Drzewiarze na Górnym Śląsku — 75 lat w służbie przyrodzie i technice".</li>
-            <li><strong>Zasadzenie 75 dębów jubileuszowych</strong> na terenie Nadleśnictwa Katowice przez członków stowarzyszenia oraz zaproszonych gości.</li>
-          </ul>
-          
-          <p>Zarząd Oddziału zaprasza wszystkie koła zakładowe do zgłaszania propozycji i pamiątek historycznych (starych fotografii, dokumentów, odznak), które wzbogacą jubileuszową wystawę objazdową. Wspomnienia można przesyłać bezpośrednio do biura oddziału.</p>
-        `
+          <p>18 lutego 2026 r. w siedzibie RDLP w Katowicach odbył się Zwyczajny Zjazd Delegatów Kół SITLiD. Wybrano nowy Zarząd Oddziału na kadencję 2026–2029 oraz delegatów na Zjazd Krajowy. Przewodnicząca Zjazdu: kol. Bożena Kawecka. Delegaci jednogłośnie udzielili absolutorium ustępującemu Zarządowi.</p>
+          <p>Nowy Zarząd Oddziału: Waleria Kosman – Przewodnicząca (koło Sucha); Bożena Kawecka – Z-ca (koło Kluczbork); Wojciech Kohut – Z-ca (koło Wisła); Jarosław Żaba – Sekretarz (koło Kluczbork); Wojciech Jaroń – Skarbnik (koło RDLP Katowice); członkowie: Marek Czader, Grzegorz Skrobek, Ryszard Kocieliński, Piotr Król, Rafał Miłkowski, Krzysztof Rydz, Piotr Arent, Krzysztof Steczek.</p>
+        `,
+        images: [
+          "https://www.katowice.lasy.gov.pl/image/journal/article?img_id=54133945&t=1779953073677&width=600"
+        ]
       }
     ];
 
@@ -2584,20 +2726,25 @@
         'Ogłoszenia': 'background-color: var(--color-text-muted);'
       };
       const catStyle = categoryColors[post.category] || 'background-color: var(--color-primary);';
+      const hasImage = post.images && post.images.length > 0;
 
       return `
         <article class="news-card">
           <div class="news-card-media" style="${catStyle}">
             <span class="news-card-category">${post.category}</span>
-            <!-- Abstract decorative foliage vectors instead of heavy images -->
-            <svg class="news-card-bg-pattern" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="50" cy="50" r="40" stroke="rgba(255,255,255,0.06)" stroke-width="2" />
-              <path d="M50 10 C55 30, 65 40, 50 85 C35 40, 45 30, 50 10 Z" fill="rgba(255,255,255,0.04)" />
-              <path d="M50 30 C58 45, 68 50, 50 80 C32 50, 42 45, 50 30 Z" fill="rgba(255,255,255,0.06)" />
-            </svg>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 48px; height: 48px; opacity: 0.15; color:#FFF;">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z" />
-            </svg>
+            ${hasImage ? `
+              <img src="${post.images[0]}" alt="${post.title}" class="news-card-img" loading="lazy">
+            ` : `
+              <!-- Abstract decorative foliage vectors instead of heavy images -->
+              <svg class="news-card-bg-pattern" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="40" stroke="rgba(255,255,255,0.06)" stroke-width="2" />
+                <path d="M50 10 C55 30, 65 40, 50 85 C35 40, 45 30, 50 10 Z" fill="rgba(255,255,255,0.04)" />
+                <path d="M50 30 C58 45, 68 50, 50 80 C32 50, 42 45, 50 30 Z" fill="rgba(255,255,255,0.06)" />
+              </svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 48px; height: 48px; opacity: 0.15; color:#FFF;">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z" />
+              </svg>
+            `}
           </div>
           <div class="news-card-body">
             <div class="news-card-meta">
@@ -2649,12 +2796,28 @@
               <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"></path>
               </svg>
-              <span>Autor: Zarząd SITLiD Katowice</span>
+              <span>Autor: ${post.author || 'Zarząd SITLiD Katowice'}</span>
             </div>
           </div>
         </header>
         <div class="news-detail-body">
           ${post.content}
+          
+          ${post.images && post.images.length > 0 ? `
+            <div class="news-detail-gallery-title">Galeria zdjęć</div>
+            <div class="news-detail-gallery">
+              ${post.images.map((img, idx) => `
+                <div class="news-gallery-item" onclick="openLightbox(${idx}, ${JSON.stringify(post.images).replace(/"/g, '&quot;')})">
+                  <img src="${img}" alt="Zdjęcie ${idx + 1}" loading="lazy">
+                  <div class="news-gallery-overlay">
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.637 10.637zM10.5 7.5v6m3-3h-6"></path>
+                    </svg>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          ` : ''}
         </div>
       `;
 
@@ -2958,6 +3121,82 @@
 
     // Watch for dynamic route history shifts
     window.addEventListener('hashchange', router);
+
+    /* ==========================================
+       10. IMMERSIVE LIGHTBOX CONTROLLER
+       ========================================== */
+    let currentLightboxImages = [];
+    let currentLightboxIndex = 0;
+
+    window.openLightbox = function(index, images) {
+      currentLightboxImages = images;
+      currentLightboxIndex = index;
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const lightboxCounter = document.getElementById('lightbox-counter');
+      
+      if (!lightbox || !lightboxImg || !lightboxCounter) return;
+      
+      lightboxImg.src = currentLightboxImages[currentLightboxIndex];
+      lightboxCounter.textContent = `${currentLightboxIndex + 1} / ${currentLightboxImages.length}`;
+      
+      lightbox.style.display = 'flex';
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    };
+
+    window.closeLightbox = function() {
+      const lightbox = document.getElementById('lightbox');
+      if (lightbox) {
+        lightbox.style.display = 'none';
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+    };
+
+    window.changeLightboxImage = function(direction) {
+      if (currentLightboxImages.length === 0) return;
+      currentLightboxIndex = (currentLightboxIndex + direction + currentLightboxImages.length) % currentLightboxImages.length;
+      const lightboxImg = document.getElementById('lightbox-img');
+      const lightboxCounter = document.getElementById('lightbox-counter');
+      if (lightboxImg && lightboxCounter) {
+        lightboxImg.src = currentLightboxImages[currentLightboxIndex];
+        lightboxCounter.textContent = `${currentLightboxIndex + 1} / ${currentLightboxImages.length}`;
+      }
+    };
+
+    // Close lightbox when clicking outside the image
+    document.addEventListener('click', (e) => {
+      const lightbox = document.getElementById('lightbox');
+      if (lightbox && lightbox.style.display === 'flex' && e.target === lightbox) {
+        window.closeLightbox();
+      }
+    });
+
+    // Keyboard controls for a premium experience
+    document.addEventListener('keydown', (e) => {
+      const lightbox = document.getElementById('lightbox');
+      if (lightbox && lightbox.style.display === 'flex') {
+        if (e.key === 'Escape') {
+          window.closeLightbox();
+        } else if (e.key === 'ArrowLeft') {
+          window.changeLightboxImage(-1);
+        } else if (e.key === 'ArrowRight') {
+          window.changeLightboxImage(1);
+        }
+      }
+    });
   </script>
+
+  <!-- Lightbox Modal for Photo Galleries -->
+  <div id="lightbox" class="lightbox" aria-hidden="true" style="display: none;">
+    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Zamknij galerię">&times;</button>
+    <button class="lightbox-prev" onclick="changeLightboxImage(-1)" aria-label="Poprzednie zdjęcie">&lsaquo;</button>
+    <button class="lightbox-next" onclick="changeLightboxImage(1)" aria-label="Następne zdjęcie">&rsaquo;</button>
+    <div class="lightbox-content">
+      <img id="lightbox-img" src="" alt="Powiększone zdjęcie">
+      <div id="lightbox-counter" class="lightbox-counter">1 / 1</div>
+    </div>
+  </div>
 </body>
 </html>
